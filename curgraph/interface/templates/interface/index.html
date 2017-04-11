@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="/static/jqwidgets/styles/jqx.darkblue.css" type="text/css" />
+    <link rel="stylesheet" href="/static/interface/css/curgraph.css"/>
+    <script type="text/javascript" src="/static/interface/js/jquery-1.11.3.min.js"></script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxdatatable.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxchart.core.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxdatetimeinput.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxcalendar.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxtooltip.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/globalization/globalize.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/globalization/globalize.culture.ru-RU.js"></script>
+    <script type="text/javascript" src="/static/interface/js/Main.js"></script>
+    <script type="text/javascript" src="/static/interface/js/CurrentModel.js"></script>
+    <script type="text/javascript" src="/static/interface/js/CurrentController.js"></script>
+    <script type="text/javascript" src="/static/interface/js/TickDataTable.js"></script>
+    <script type="text/javascript" src="/static/interface/js/CurrentChart.js"></script>
+    <script type="text/javascript" src="/static/interface/js/WeekChart.js"></script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td> <h1>Комплекс ВЭПП-4</h1>
+            </td>
+            <td>
+                <h3>Начальник смены:</h3>
+                <h3>Программа работы:</h3>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <h3>ВЭПП-3</h3>
+                <div id="v3tickData" class="curgraph_table">
+                </div>
+            </td>
+            <td colspan="3">
+                <table>
+                    <tr>
+                        <td>
+                            <input type="datetime" id="from_time"/>
+                        </td>
+                        <td>
+                            <button id="reload_graph">Обновить</button>
+                        </td>
+                    </tr>
+                </table>
+                <div id="v3chart">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>ВЭПП-4</h3>
+                <div id="v4tickData" class="curgraph_table">
+                </div>
+            </td>
+            <td colspan="3">
+                <table>
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+                <div id="v4chart" style="width:800px; height:500px">
+                </div>
+                <div id="v4rangeSelector" style="width:800px; height:100px;"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td></td>
+            <td colspan="2"></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,60 @@
+.curgraph_table{
+    border: none;
+}
+.curgraph_table td{
+    border: none;
+    font-size: 12pt;
+    font-weight: bold;
+    background-color: black;
+}
+.curgraph_table tr{
+    color: white;
+    background-color: black;
+}
+.jqx-chart-axis-text,
+.jqx-chart-label-text,
+.jqx-chart-legend-text,
+.jqx-chart-axis-description
+{
+    font-size: 12px;
+    font-family: Helvetica;
+}
+.jqx-chart-title-text,
+.jqx-chart-title-description,
+.jqx-chart-tooltip-text
+{
+    font-size: 15px;
+    font-family: Helvetica;
+}
+
+.yellow
+{
+    color: #fbff30;
+}
+.jqx-cell.red
+{
+    color: #ff3030;
+}
+.blue
+{
+    color: #32f4ff;
+}
+.green
+{
+    color: #47f753;
+}
+
+body{
+    background-color: black;
+    color: white;
+    font-family: Helvetica;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+h1 {
+    font-family: Verdana, Arial, Helvetica, sans-serif; /* Рубленый шрифт заголовка */
+}
+h3 {
+    font-family: Verdana, Arial, Helvetica, sans-serif; /* Рубленый шрифт заголовка */
+}
