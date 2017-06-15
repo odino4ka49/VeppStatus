@@ -1,0 +1,159 @@
+[
+  {
+    "Name": "time"
+  },
+  {
+    "Name": "V3_status"
+  },
+  {
+    "Name": "V3_status_int"
+  },
+  {
+    "Name": "V3_time"
+  },
+  {
+    "Name": "V3_mode"
+  },
+  {
+    "Name": "V3_polarity"
+  },
+  {
+    "Name": "V3_energy"
+  },
+  {
+    "Name": "V3_total"
+  },
+  {
+    "Name": "V3_total_e-",
+    "Function": {
+      "Name": "Total_current",
+      "Flag": "V3_polarity",
+      "Flag_values": ["e-"],
+      "Main_data": "V3_total"
+    }
+  },
+  {
+    "Name": "V3_total_e+",
+    "Function": {
+      "Name": "Total_current",
+      "Flag": "V3_polarity",
+      "Flag_values": ["e+"],
+      "Main_data": "V3_total"
+    }
+  },
+  {
+    "Name": "V3_sep1"
+  },
+  {
+    "Name": "V3_sep2"
+  },
+  {
+    "Name": "V3_lifetime"
+  },
+  {
+    "Name": "V3_currintegral",
+    "Function":
+    {
+      "Name": "Integration",
+      "Parameter": "V3_total",
+      "Time_start": [9,21],
+      "Flag": "V3_status_int",
+      "Flag_values": [3,4,6,7],
+      "Denominator": 1000
+    }
+  },
+  {
+    "Name": "V4_status"
+  },
+  {
+    "Name": "V4_status_int"
+  },
+  {
+    "Name": "V4_mode"
+  },
+  {
+    "Name": "V4_polarity"
+  },
+  {
+    "Name": "V4_energyset"
+  },
+  {
+    "Name": "V4_energymeas"
+  },
+  {
+    "Name": "V4_energy",
+    "Function": {
+      "Name": "Substitution",
+      "Flag": "V4_status_int",
+      "Flag_values": [2,5],
+      "Main_data": "V4_energyset",
+      "Substitute_data": "V4_energymeas"
+    }
+  },
+  {
+    "Name": "V4_total"
+  },
+  {
+    "Name": "V4_total_e-",
+    "Function": {
+      "Name": "Total_current",
+      "Flag": "V4_polarity",
+      "Flag_values": ["e-"],
+      "Main_data": "V4_total"
+    }
+  },
+  {
+    "Name": "V4_total_e+",
+    "Function": {
+      "Name": "Total_current",
+      "Flag": "V4_polarity",
+      "Flag_values": ["e+"],
+      "Main_data": "V4_total"
+    }
+  },
+  {
+    "Name": "V4_e1"
+  },
+  {
+    "Name": "V4_e2"
+  },
+  {
+    "Name": "V4_p1"
+  },
+  {
+    "Name": "V4_p2"
+  },
+  {
+    "Name": "V4_lifetime"
+  },
+  {
+    "Name": "V4_luminosityE"
+  },
+  {
+    "Name": "V4_luminosityP"
+  },
+  {
+    "Name": "V4_currintegral",
+    "Function":
+    {
+      "Name": "Integration",
+      "Parameter": "V4_total",
+      "Time_start": [9,21],
+      "Flag": "V4_status_int",
+      "Flag_values": [1,3],
+      "Denominator": 1000
+    }
+  },
+  {
+    "Name": "V4_lumintegral",
+    "Function":
+    {
+      "Name": "Integration",
+      "Parameter": ["V4_luminosityE","V4_luminosityP"],
+      "Time_start": [9,21],
+      "Flag": "V4_status_int",
+      "Flag_values": [1,3],
+      "Denominator": 100000
+    }
+  }
+]

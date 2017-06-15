@@ -1,14 +1,11 @@
 .curgraph_table{
     border: none;
-}
-.curgraph_table td{
-    border: none;
-    font-size: 12pt;
-    font-weight: bold;
+    color: white;
     background-color: black;
 }
-.curgraph_table tr{
-    color: white;
+.jqx-grid-cell{
+    border: none;
+    font-size: 12pt;
     background-color: black;
 }
 .jqx-chart-axis-text,
@@ -16,32 +13,70 @@
 .jqx-chart-legend-text,
 .jqx-chart-axis-description
 {
-    font-size: 12px;
+    font-size: 11px;
     font-family: Helvetica;
 }
 .jqx-chart-title-text,
 .jqx-chart-title-description,
 .jqx-chart-tooltip-text
 {
-    font-size: 15px;
+    font-size: 14px;
     font-family: Helvetica;
 }
+.jqx-checkbox div{
+    background-color: rgb(183, 178, 178);
+    border: lightgray;
+}
 
-.yellow
+
+.color1
 {
-    color: #fbff30;
+    color: #1cffec;
 }
-.jqx-cell.red
+.color2
 {
-    color: #ff3030;
+    color: #42f4a7;
 }
-.blue
-{
-    color: #32f4ff;
-}
-.green
+.color3
 {
     color: #47f753;
+}
+.color4
+{
+    color: #9df441;
+}
+.color5
+{
+    color: #f4f441;
+}
+.color6
+{
+    color: #f441cd;
+}
+.color7
+{
+    color: #47f78a;
+}
+.color8
+{
+    color: #8cffb2;
+}
+.color9
+{
+    color: #6fb7f7;
+}
+.color10
+{
+    color: #41f4e2;
+}
+.color11
+{
+    color: #df41f4;
+}
+
+
+.hidden{
+    display: none;
 }
 
 body{

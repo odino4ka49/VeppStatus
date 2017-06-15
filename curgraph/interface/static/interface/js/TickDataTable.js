@@ -35,7 +35,8 @@ CURGRAPH.TickDataTable = function(table,model){
             "name": "V3_total",
             "fieldname": "Beam current",
             "units": "mA",
-            "color": "yellow"
+            "color": "yellow",
+            "plot": "True"
         },
         {
             "name": "V3_sep1",
@@ -52,13 +53,13 @@ CURGRAPH.TickDataTable = function(table,model){
             "fieldname": "Lifetime",
             "units": "sec",
             "color": "yellow"
-        }/*,
+        },
         {
             "name": "V3_currintegral",
             "fieldname": "Current integral",
             "units": "C",
             "color": "blue"
-        }*/
+        }
         ],
         V4_table = [{
             "name": "V4_status",
@@ -124,7 +125,7 @@ CURGRAPH.TickDataTable = function(table,model){
             "fieldname": "LuminosityP",
             "units": "^28",
             "color": "yellow"
-        }/*,
+        },
         {
             "name": "V4_currintegral",
             "fieldname": "Current integral",
@@ -136,7 +137,7 @@ CURGRAPH.TickDataTable = function(table,model){
             "fieldname": "Luminosity integral",
             "units": "1/nb",
             "color": "blue"
-        }*/
+        }
         ];
 
     function updateTableData(){
@@ -183,9 +184,10 @@ CURGRAPH.TickDataTable = function(table,model){
     $("#v3tickData").jqxDataTable(
     {
         source: v3_tableAdapter,
+        localization: {thousandsSeparator: " "},
         columns: [
             { dataField: 'fieldname', width: 170, resizable: true },
-            { dataField: 'value', width: 170, resizable: true, cellsFormat: "f2", cellclassname: cellclass },
+            { dataField: 'value', width: 170, resizable: true, cellclassname: cellclass },
             { dataField: 'units', width: 50, resizable: true }
         ],
         showHeader: false
@@ -208,9 +210,10 @@ CURGRAPH.TickDataTable = function(table,model){
     $("#v4tickData").jqxDataTable(
     {
         source: v4_tableAdapter,
+        localization: {thousandsSeparator: " "},
         columns: [
             { dataField: 'fieldname', width: 170, resizable: true },
-            { dataField: 'value', width: 170, resizable: true, cellsFormat: "f2", cellclassname: cellclass  },
+            { dataField: 'value', width: 170, resizable: true, cellclassname: cellclass  },
             { dataField: 'units', width: 50, resizable: true }
         ],
         showHeader: false

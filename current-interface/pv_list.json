@@ -1,0 +1,102 @@
+[
+  {
+    "Name": "V3_status",
+    "Pv": "VEPP3:Status-RB",
+    "Datatype": "str"
+  },
+  {
+    "Name": "V3_status_int",
+    "Pv": "VEPP3:Status-RB"
+  },
+  {
+    "Name": "V3_time",
+    "Pv": "VEPP3:StatusStayTime-RB"
+  },
+  {
+    "Name": "V3_mode",
+    "Pv": "VEPP3:TableName-RB"
+  },
+  {
+    "Name": "V3_polarity",
+    "Pv": "VEPP3:Polarity-RB",
+    "Datatype": "str"
+  },
+  {
+    "Name": "V3_energy",
+    "Pv": "VEPP3:EnergySet-RB"
+  },
+  {
+    "Name": "V3_total",
+    "Pv": "VEPP3:CurrentTotal-RB"
+  },
+  {
+    "Name": "V3_sep1",
+    "Pv": "VEPP3:CurrentSep1-RB"
+  },
+  {
+    "Name": "V3_sep2",
+    "Pv": "VEPP3:CurrentSep2-RB"
+  },
+  {
+    "Name": "V3_lifetime",
+    "Pv": "VEPP3:CurrentLifeTime-RB"
+  },
+  {
+    "Name": "V4_status",
+    "Pv": "VEPP4:Status-RB",
+    "Datatype": "str"
+  },
+  {
+    "Name": "V4_status_int",
+    "Pv": "VEPP4:Status-RB"
+  },
+  {
+    "Name": "V4_mode",
+    "Pv": "VEPP4:TableName-RB"
+  },
+  {
+    "Name": "V4_polarity",
+    "Pv": "VEPP4:InjPolarityRequest-RB",
+    "Datatype": "str"
+  },
+  {
+    "Name": "V4_energyset",
+    "Pv": "VEPP4:EnergySet-RB"
+  },
+  {
+    "Name": "V4_energymeas",
+    "Pv": "VEPP4:EnergyMeas-RB"
+  },
+  {
+    "Name": "V4_total",
+    "Pv": "VEPP4:CurrentTotal-RB"
+  },
+  {
+    "Name": "V4_e1",
+    "Pv": "VEPP4:CurrentE1-RB"
+  },
+  {
+    "Name": "V4_e2",
+    "Pv": "VEPP4:CurrentE2-RB"
+  },
+  {
+    "Name": "V4_p1",
+    "Pv": "VEPP4:CurrentP1-RB"
+  },
+  {
+    "Name": "V4_p2",
+    "Pv": "VEPP4:CurrentP2-RB"
+  },
+  {
+    "Name": "V4_lifetime",
+    "Pv": "VEPP4:CurrentLifeTime-RB"
+  },
+  {
+    "Name": "V4_luminosityE",
+    "Pv": "VEPP4:LuminostyE-RB"
+  },
+  {
+    "Name": "V4_luminosityP",
+    "Pv": "VEPP4:LuminostyP-RB"
+  }
+]

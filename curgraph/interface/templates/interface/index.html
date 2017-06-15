@@ -12,9 +12,13 @@
     <script type="text/javascript" src="/static/jqwidgets/jqxdata.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/jqxbuttons.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxcheckbox.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/jqxlistbox.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/jqxdropdownlist.js"></script>
-    <script type="text/javascript" src="/static/jqwidgets/jqxdatatable.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxgrid.selection.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxgrid.edit.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/jqxchart.core.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/jqxdatetimeinput.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/jqxcalendar.js"></script>
@@ -24,12 +28,12 @@
     <script type="text/javascript" src="/static/interface/js/Main.js"></script>
     <script type="text/javascript" src="/static/interface/js/CurrentModel.js"></script>
     <script type="text/javascript" src="/static/interface/js/CurrentController.js"></script>
-    <script type="text/javascript" src="/static/interface/js/TickDataTable.js"></script>
+    <script type="text/javascript" src="/static/interface/js/TickGrid.js"></script>
     <script type="text/javascript" src="/static/interface/js/CurrentChart.js"></script>
     <script type="text/javascript" src="/static/interface/js/WeekChart.js"></script>
 </head>
 <body>
-    <table>
+    <table id="main_table">
         <tr>
             <td> <h1>Комплекс ВЭПП-4</h1>
             </td>
@@ -50,10 +54,7 @@
                 <table>
                     <tr>
                         <td>
-                            <input type="datetime" id="from_time"/>
-                        </td>
-                        <td>
-                            <button id="reload_graph">Обновить</button>
+                            <button id="refresh_graph">Обновить</button>
                         </td>
                     </tr>
                 </table>
@@ -74,16 +75,17 @@
                         </td>
                     </tr>
                 </table>
-                <div id="v4chart" style="width:800px; height:500px">
+                <div id="v4chart">
                 </div>
-                <div id="v4rangeSelector" style="width:800px; height:100px;"></div>
             </td>
         </tr>
         <tr>
             <td>
             </td>
             <td></td>
-            <td colspan="2"></td>
+            <td colspan="2">
+                <input type="datetime" id="from_time"/>
+            </td>
         </tr>
     </table>
 </body>

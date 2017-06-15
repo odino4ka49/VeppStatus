@@ -66,6 +66,7 @@ CURGRAPH.CurrentModel = function(){
     };
 
     function loadWeekData(){
+       // console.log("loadweek")
             $(document).trigger("set_loading_cursor");
             $.ajax({
                 type: "GET",
@@ -84,11 +85,12 @@ CURGRAPH.CurrentModel = function(){
             });
         };
 
-    function loadArrByVar(variable){
+    function loadArrByVar(variable,start,end){
+        //console.log("loadarrbyvar")
             $(document).trigger("set_loading_cursor");
             $.ajax({
                 type: "GET",
-                data: {variable: JSON.stringify(variable) },
+                data: {variable: JSON.stringify(variable), start: JSON.stringify(start), end: JSON.stringify(end) },
                 url: CURGRAPH.serveradr()+"interface/getArrByVar",
                 error: function(xhr, ajaxOptions, thrownError) {
                     $(document).trigger("unset_loading_cursor");
