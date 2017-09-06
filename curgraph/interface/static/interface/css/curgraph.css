@@ -3,6 +3,9 @@
     color: white;
     background-color: black;
 }
+.jqx-grid-content{
+    background-color: black;
+}
 .jqx-grid-cell{
     border: none;
     font-size: 12pt;
@@ -77,6 +80,7 @@
 
 .hidden{
     display: none;
+    background-color: black;
 }
 
 body{

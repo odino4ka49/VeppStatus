@@ -1,30 +1,31 @@
 CURGRAPH.namespace("CURGRAPH.TickGrid");
 CURGRAPH.TickGrid = function(table,model){
     var model=model,
+    testi=1;
         tickdata=[],
         V3_table = [{
             "name": "V3_status",
             "fieldname": "Status",
             "units": "",
-            "display":"hidden",
+            "displaycheckbox":"false",
         },
         {
             "name": "V3_time",
             "fieldname": "From start",
             "units": "sec",
-            "display":"hidden",
+            "displaycheckbox":"false",
         },
         {
             "name": "V3_mode",
             "fieldname": "Mode",
             "units": "",
-            "display":"hidden",
+            "displaycheckbox":"false",
         },
         {
             "name": "V3_polarity",
             "fieldname": "Polarity",
             "units": "",
-            "display":"hidden",
+            "displaycheckbox":"false",
         },
         {
             "name": "V3_energy",
@@ -74,19 +75,19 @@ CURGRAPH.TickGrid = function(table,model){
             "name": "V4_status",
             "fieldname": "Status",
             "units": "",
-            "display":"hidden"
+            "displaycheckbox":"false"
         },
         {
             "name": "V4_mode",
             "fieldname": "Mode",
             "units": "",
-            "display":"hidden"
+            "displaycheckbox":"false"
         },
         {
             "name": "V4_polarity",
             "fieldname": "Polarity",
             "units": "",
-            "display":"hidden"
+            "displaycheckbox":"false"
         },
         {
             "name": "V4_energy",
@@ -188,16 +189,19 @@ CURGRAPH.TickGrid = function(table,model){
 
     $(document).on("got_tickdata",function(){
         tickdata = model.getTickData();
-        updateTableData();
-        $("#v3tickData").jqxGrid('updateBoundData');
-        $("#v4tickData").jqxGrid('updateBoundData');
+        if(testi==1){
+            updateTableData();
+            $("#v3tickData").jqxGrid('updateBoundData');
+            $("#v4tickData").jqxGrid('updateBoundData');
+            testi=0;
+        }
     });
 
     var cellclass = function(row,datafield,value,rowdata){
         return rowdata.color;
     }
     var hiddencellclass = function(row,datafield,value,rowdata){
-        if(rowdata.display=="hidden"){
+        if(rowdata.displaycheckbox==false){
             return "hidden";
         }
     }
@@ -211,7 +215,8 @@ CURGRAPH.TickGrid = function(table,model){
             { name: 'fieldname' },
             { name: 'units' },
             { name: 'color' },
-            { name: 'display', type: 'bool' }
+            { name: 'display', type: 'bool' },
+            { name: 'displaycheckbox', type: 'bool' }
         ],
         localData: V3_table
     };
@@ -249,7 +254,8 @@ CURGRAPH.TickGrid = function(table,model){
             { name: 'fieldname' },
             { name: 'units' },
             { name: 'color' },
-            { name: 'display', type: 'bool' }
+            { name: 'display', type: 'bool' },
+            { name: 'displaycheckbox', type: 'bool' }
         ],
         localData: V4_table
     };
