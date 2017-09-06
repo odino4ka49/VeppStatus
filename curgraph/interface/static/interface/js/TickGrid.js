@@ -189,12 +189,9 @@ CURGRAPH.TickGrid = function(table,model){
 
     $(document).on("got_tickdata",function(){
         tickdata = model.getTickData();
-        if(testi==1){
-            updateTableData();
-            $("#v3tickData").jqxGrid('updateBoundData');
-            $("#v4tickData").jqxGrid('updateBoundData');
-            testi=0;
-        }
+        updateTableData();
+        $("#v3tickData").jqxGrid('updateBoundData');
+        $("#v4tickData").jqxGrid('updateBoundData');
     });
 
     var cellclass = function(row,datafield,value,rowdata){
