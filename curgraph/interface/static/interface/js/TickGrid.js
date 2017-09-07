@@ -227,9 +227,9 @@ CURGRAPH.TickGrid = function(table,model){
         width: 365,
         editable: true,
         columns: [
-            { dataField: 'fieldname', width: 170, resizable: true, editable: false },
-            { dataField: 'value', width: 120, resizable: true, cellclassname: cellclass, editable: false },
-            { dataField: 'units', width: 50, resizable: true, editable: false },
+            { dataField: 'fieldname', width: 150, resizable: true, editable: false },
+            { dataField: 'value', width: 70, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
+            { dataField: 'units', width: 45, resizable: true, editable: false },
             { dataField: 'display', width: 10, resizable: true, columntype: 'checkbox', cellclassname: hiddencellclass, editable: true }
         ],
         showHeader: false
@@ -266,9 +266,9 @@ CURGRAPH.TickGrid = function(table,model){
         width: 365,
         editable: true,
         columns: [
-            { dataField: 'fieldname', width: 170, resizable: true, editable: false },
-            { dataField: 'value', width: 120, resizable: true, cellclassname: cellclass, editable: false },
-            { dataField: 'units', width: 50, resizable: true, editable: false },
+            { dataField: 'fieldname', width: 150, resizable: true, editable: false },
+            { dataField: 'value', width: 70, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
+            { dataField: 'units', width: 45, resizable: true, editable: false },
             { dataField: 'display', width: 10, resizable: true, columntype: 'checkbox', cellclassname: hiddencellclass, editable: true }
         ],
         showHeader: false

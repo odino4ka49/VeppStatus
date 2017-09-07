@@ -170,7 +170,7 @@ CURGRAPH.CurrentChart = function(chart,model){
         //console.log($("#v3rangeSelector").jqxRangeSelector('getRange'));
         if(counter==0){
             updateChartData();
-            counter = 10;
+            counter = 30;
         }
         counter --;
     });

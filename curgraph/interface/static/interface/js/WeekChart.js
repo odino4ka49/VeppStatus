@@ -276,7 +276,8 @@ CURGRAPH.WeekChart = function(chart,model){
                 item:{
                     fontColor: "white",
                     fontWeight: "bold"
-                }
+                },
+                lineColor:"#47f753"
             },
             scaleY2:{
                 "guide":{
@@ -291,7 +292,8 @@ CURGRAPH.WeekChart = function(chart,model){
                 item:{
                     fontColor: "white",
                     fontWeight: "bold"
-                }
+                },
+                lineColor:"#1cffec"
             },
             scaleY3:{
                 "guide":{
@@ -306,7 +308,8 @@ CURGRAPH.WeekChart = function(chart,model){
                 item:{
                     fontColor: "white",
                     fontWeight: "bold"
-                }
+                },
+                lineColor:"#f4f441"
             },
             scaleY4:{
                 "guide":{
@@ -321,7 +324,8 @@ CURGRAPH.WeekChart = function(chart,model){
                 item:{
                     fontColor: "white",
                     fontWeight: "bold"
-                }
+                },
+                lineColor:"#f441cd"
             },
             zoom:{
                 preserveZoom: true
@@ -413,7 +417,8 @@ CURGRAPH.WeekChart = function(chart,model){
                 item:{
                     fontColor: "white",
                     fontWeight: "bold"
-                }
+                },
+                lineColor:"#47f753"
             },
             scaleY2:{
                 "guide":{
@@ -428,7 +433,8 @@ CURGRAPH.WeekChart = function(chart,model){
                 item:{
                     fontColor: "white",
                     fontWeight: "bold"
-                }
+                },
+                lineColor:"#1cffec"
             },
             scaleY3:{
                 "guide":{
@@ -438,12 +444,13 @@ CURGRAPH.WeekChart = function(chart,model){
                 label:{
                     "text":"sec"
                 },
-                minValue: 0,
+                //minValue: 0,
                 placement: "default",
                 item:{
                     fontColor: "white",
                     fontWeight: "bold"
-                }
+                },
+                lineColor:"#f4f441"
             },
             scaleY4:{
                 "guide":{
@@ -454,11 +461,12 @@ CURGRAPH.WeekChart = function(chart,model){
                     "text":"^28"
                 },
                 minValue: 0,
-                placement: "default",
+                //placement: "default",
                 item:{
                     fontColor: "white",
                     fontWeight: "bold"
-                }
+                },
+                lineColor:"#6fb7f7"
             },
             scaleY5:{
                 "guide":{
@@ -473,7 +481,8 @@ CURGRAPH.WeekChart = function(chart,model){
                 item:{
                     fontColor: "white",
                     fontWeight: "bold"
-                }
+                },
+                lineColor:"#f441cd"
             },
             zoom:{
                 preserveZoom: true
