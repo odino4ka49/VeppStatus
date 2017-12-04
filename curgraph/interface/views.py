@@ -48,7 +48,8 @@ def getArrByVar(request):
         end = json.loads(data['end'])
         client = zerorpc.Client()
         client.connect("tcp://127.0.0.1:4242")
-        curdata = client.getArrByVar(variable,start,end)
+        curdata = client.getArrByVar(variable,start,end, 10)
+
         """bigsocket.send_string("getArrByVar "+variable+" "+str(start)+" "+str(end))
         message = bigsocket.recv()
         curdata = json.loads(message)"""

@@ -91,6 +91,11 @@ CURGRAPH.WeekChart = function(chart,model){
                 "values":[],
                 "chartname":"v4chart",
                 "color": "#41f4e2"
+            },"V4_luminosityMean":{
+                "scales":'scale-x,scale-y-4',
+                "values":[],
+                "chartname":"v4chart",
+                "color": "#41c7f4"
             },"V4_currintegral":{
                 "scales":'scale-x,scale-y-5',
                 "values":[],

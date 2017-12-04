@@ -156,6 +156,13 @@ CURGRAPH.TickGrid = function(table,model){
             "plot": "V4_luminosityP"
         },
         {
+            "name": "V4_luminosityMean",
+            "fieldname": "Mean Luminosity",
+            "units": "^28",
+            "color": "color12",
+            "plot": "V4_luminosityMean"
+        },
+        {
             "name": "V4_currintegral",
             "fieldname": "Current integral",
             "units": "C",

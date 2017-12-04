@@ -157,6 +157,10 @@ def saveData():
                     value = next((x for x in curshot if x["Name"] == func["Main_data"]), None)["Value"]
                 else:
                     value = "null"
+            elif func["Name"] == "Mean":
+                value1 = next((x for x in curshot if x["Name"] == func["Value1"]), None)["Value"]
+                value2 = next((x for x in curshot if x["Name"] == func["Value2"]), None)["Value"]
+                value = value1+value2/2.0
             elif func["Name"] == "Integration":
                 timestamp = time.strftime("%H%M%S")
                 if timestamp == "090000" or timestamp == "210000":
@@ -253,12 +257,16 @@ def writeWeekData():
                 strline += str(item)+"|"
             f.write(strline+"\n")
 
-def getArrByVar(variable,start,end):
+def getArrByVar(variable,start,end,frequency):
     global week_data_arr
     result = []
+    i=0
     for shot in week_data_arr:
-        if shot[0] > start and shot[0] < end:
-            result.append([shot[0]*1000,shot[getVariablePosition(variable)]])
+        if(i==frequency):
+            if shot[0] > start and shot[0] < end:
+                result.append([shot[0]*1000,shot[getVariablePosition(variable)]])
+            i=0
+        i+=1
     return result
 
 def tick():

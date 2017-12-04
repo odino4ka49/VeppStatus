@@ -133,6 +133,15 @@
     "Name": "V4_luminosityP"
   },
   {
+    "Name": "V4_luminosityMean",
+    "Function":
+    {
+      "Name": "Mean",
+      "Value1": "V4_luminosityE",
+      "Value2": "V4_luminosityP"
+    }
+  },
+  {
     "Name": "V4_currintegral",
     "Function":
     {
