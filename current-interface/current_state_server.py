@@ -28,12 +28,16 @@ class ServerRPC(object):
     def getWeekDataArray(self):
         global week_data_arr
         return week_data_arr
-    def getArrByVar(self,variable,start,end):
+    def getArrByVar(self,variable,start,end,frequency):
         global week_data_arr
         result = []
+        i=0
         for shot in week_data_arr:
-            if shot[0] > start and shot[0] < end:
-                result.append([shot[0]*1000,shot[getVariablePosition(variable)]])
+            if i==frequency:
+                if shot[0] > start and shot[0] < end:
+                    result.append([shot[0]*1000,shot[getVariablePosition(variable)]])
+                i=0
+            i+=1
         return result
     def getTick(self):
         global curshot
@@ -262,7 +266,7 @@ def getArrByVar(variable,start,end,frequency):
     result = []
     i=0
     for shot in week_data_arr:
-        if(i==frequency):
+        if i==frequency:
             if shot[0] > start and shot[0] < end:
                 result.append([shot[0]*1000,shot[getVariablePosition(variable)]])
             i=0
@@ -351,4 +355,3 @@ timer.timeout.connect(tick)
 timer.start(1000)
 
 sys.exit(app.exec_())
-
