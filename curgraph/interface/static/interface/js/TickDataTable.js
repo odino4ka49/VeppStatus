@@ -219,6 +219,12 @@ CURGRAPH.TickDataTable = function(table,model){
         showHeader: false
     });
 
+		console.log("collapse");
+    $(".collapseTrigger").click(function(){
+	console.log("collapse");
+	$(this).siblings().hide();
+    });
+
     return {
 
     };

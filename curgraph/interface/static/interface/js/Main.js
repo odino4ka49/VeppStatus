@@ -28,7 +28,9 @@ $(document).on("unset_loading_cursor",function(){
 $(document).ready(function(){
     var model = CURGRAPH.CurrentModel(),
         controller = CURGRAPH.CurrentController(model,null);
+    var program_panel = CURGRAPH.ProgramPanel($("#programPanel"),model);
     var datatable = CURGRAPH.TickGrid($("#tickData"),model);
+    var datatable = CURGRAPH.StatusPanel($("#statusPanel"),model);
     var chart = CURGRAPH.WeekChart($("#v3chart"),model);
     $.jqx.theme = 'darkblue';
 });

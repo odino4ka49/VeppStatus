@@ -43,17 +43,11 @@ CURGRAPH.WeekChart = function(chart,model){
                 "values":[],
                 "chartname":"v4chart",
                 "color": "#1cffec"
-            },"V4_total_e-":{
+            },"V4_total":{
                 "scales":'scale-x,scale-y',
                 "values":[],
                 "chartname":"v4chart",
                 "color": "#42f4a7",
-                "display": "default"
-            },"V4_total_e+":{
-                "scales":'scale-x,scale-y',
-                "values":[],
-                "chartname":"v4chart",
-                "color": "#ff1900",
                 "display": "default"
             },"V4_e1":{
                 "scales":'scale-x,scale-y',
@@ -69,12 +63,12 @@ CURGRAPH.WeekChart = function(chart,model){
                 "scales":'scale-x,scale-y',
                 "values":[],
                 "chartname":"v4chart",
-                "color": "#9cf747"
+                "color": "#f989b8"
             },"V4_p2":{
                 "scales":'scale-x,scale-y',
                 "values":[],
                 "chartname":"v4chart",
-                "color": "#8cffb2"
+                "color": "#fc3a8b"
             },"V4_lifetime":{
                 "scales":'scale-x,scale-y-3',
                 "values":[],
@@ -109,10 +103,17 @@ CURGRAPH.WeekChart = function(chart,model){
             }
         },
         adddata={},
+        last_adding = 0,
         counter=30,
         datesrange = {from:"",to:""},
         no_time_changes = false;
-        refresh = true;
+        refresh = true,
+	visible_plots = [];
+
+    function getFrequency(){
+	var freq = $("#graph_frequency").val();
+	return ((freq!=undefined) && (freq > 0)) ? freq : 10;
+    };
 
     function updateChartData(){
         if(!refresh){
@@ -158,6 +159,15 @@ CURGRAPH.WeekChart = function(chart,model){
     };
 
     function addChartData(tick){
+        counter --;
+        if(counter==0){
+            updateChartData();
+        }
+	if(last_adding!=0){
+	    last_adding --;
+	    return;
+	}
+	last_adding = getFrequency()-1;
         var time = tick["time"]*1000;
         for(key in adddata){
             var values = adddata[key]
@@ -167,10 +177,6 @@ CURGRAPH.WeekChart = function(chart,model){
             }
             adddata[key].push([time,tick[key]]);
         }
-        if(counter==0){
-            updateChartData();
-        }
-        counter --;
     };
 
     function removePlot(variable){
@@ -207,17 +213,18 @@ CURGRAPH.WeekChart = function(chart,model){
     };
 
     function createWeekChart(){
+	$('.resizable').resizable({
+       		handles: 'n, e, s, w'
+    	});
         var chartData = {
             type: "line",
             backgroundColor:"black",
-            title: {
-                text: "VEPP3 Data",
-                color: "white",
-                fontWeight: "bold"
-            },
             plot:{
-                exact:true,
-                preview:true
+                exact: true,
+                preview: true,
+		marker: {
+		    visible: false
+		}
             },
             plotarea:{
                 "margin-left":"15%",
@@ -249,12 +256,15 @@ CURGRAPH.WeekChart = function(chart,model){
                 }
             },
             crosshairX:{
+		exact: true,
                 plotLabel:{
                     borderWidth: 3,
                     borderRadius: 5,
-                    borderColor: "gray",
-                    backgroundColor:"#fff",
-                    width: 100
+                    borderColor: "none",
+                    backgroundColor:"transparent",
+		    fontColor: "white",
+                    width: 140,
+		    y: -40
                 }
             },
             "scale-y-n":{
@@ -346,20 +356,21 @@ CURGRAPH.WeekChart = function(chart,model){
         zingchart.render({
             id: "v3chart",
             data: chartData,
-            height: 460,
-            width: 1050
+            height: '100%',
+            width: '100%'
         });
+	zingchart.zoom = function(p){
+	    console.log(p);
+	}
         var v4chartData = {
             type: "line",
             backgroundColor:"black",
-            title: {
-                text: "VEPP4 Data",
-                color: "white",
-                fontWeight: "bold"
-            },
             plot:{
                 exact:true,
-                preview:true
+                preview:true,
+		marker: {
+		    visible: false
+		}
             },
             plotarea:{
                 "margin-left":"15%",
@@ -390,12 +401,15 @@ CURGRAPH.WeekChart = function(chart,model){
                 }
             },
             crosshairX:{
+		exact: true,
                 plotLabel:{
                     borderWidth: 3,
                     borderRadius: 5,
-                    borderColor: "gray",
-                    backgroundColor:"#fff",
-                    width: 100
+                    borderColor: "none",
+                    backgroundColor:"transparent",
+		    fontColor: "white",
+                    width: 140,
+		    y: -40
                 }
             },
             "scale-y-n":{
@@ -510,18 +524,15 @@ CURGRAPH.WeekChart = function(chart,model){
         zingchart.render({
             id: "v4chart",
             data: v4chartData,
-            height: 460,
-            height: 460,
-            width: 1050
+            height: '100%',
+            width: '100%'
         });
     };
 
-    function loadGraphData(dates){
-        //model.loadArrByVar("V3_total",dates.from.getTime()/1000|0,dates.to.getTime()/1000|0);
-        for(key in graphdata){
-            if (graphdata[key].display=="default"){
-                model.loadArrByVar(key,dates.from.getTime()/1000|0,dates.to.getTime()/1000|0);
-            }
+    function loadGraphData(){
+        var dates = $("#from_time").jqxDateTimeInput('getRange');
+        for(key of visible_plots){
+            model.loadArrByVar(key,dates.from.getTime()/1000|0,dates.to.getTime()/1000|0,getFrequency());
         }
     };
 
@@ -541,7 +552,7 @@ CURGRAPH.WeekChart = function(chart,model){
             datesrange.from = date.from;
             datesrange.to = date.to;
             if(!no_time_changes){
-                loadGraphData(date);
+                loadGraphData();
             }
             else{
                 no_time_changes = false;
@@ -553,6 +564,27 @@ CURGRAPH.WeekChart = function(chart,model){
         document.getElementById('refresh_graph').onclick = function() {
             updateChartData();
         }
+    };
+
+    function initReloadButton(){
+        document.getElementById('reload_graph').onclick = function() {
+            loadGraphData();
+        }
+    };
+
+    function initVisible(){
+	for(key in graphdata){
+            if (graphdata[key].display=="default"){
+		visible_plots.push(key);
+	    }
+	}
+    };
+
+    function removeFromArray(search_term, array){
+	var index = array.indexOf(search_term);
+	if (index !== -1) {
+	    array.splice(index, 1);
+	}
     };
 
     $(document).on("got_graphdata",function(event,variable){
@@ -580,21 +612,25 @@ CURGRAPH.WeekChart = function(chart,model){
         if(display){
             var range = $("#from_time").jqxDateTimeInput('getRange');
             if(typeof variable_info["plot"]=="string"){
-                model.loadArrByVar(variable_info["plot"],range.from.getTime()/1000|0,range.to.getTime()/1000|0);
+                model.loadArrByVar(variable_info["plot"],range.from.getTime()/1000|0,range.to.getTime()/1000|0,getFrequency());
+		visible_plots.push(variable_info["plot"]);
             }
             else{
                 variable_info["plot"].forEach(function(plot){
-                    model.loadArrByVar(plot,range.from.getTime()/1000|0,range.to.getTime()/1000|0);
+                    model.loadArrByVar(plot,range.from.getTime()/1000|0,range.to.getTime()/1000|0,getFrequency());
+		    visible_plots.push(plot);
                 });
             }
         }
         else{
             if(typeof variable_info["plot"]=="string"){
                 removePlot(variable_info["plot"]);
+	        removeFromArray(variable_info["plot"],visible_plots);
             }
             else{
                 variable_info["plot"].forEach(function(plot){
                     removePlot(plot);
+		    removeFromArray(plot,visible_plots);
                 });
             }
         }
@@ -614,7 +650,9 @@ CURGRAPH.WeekChart = function(chart,model){
 
     initTimeSelectors();
     initRefreshButton();
-    loadGraphData(datesrange);
+    initReloadButton();
+    initVisible();
+    loadGraphData();
     createWeekChart();
 
     return {

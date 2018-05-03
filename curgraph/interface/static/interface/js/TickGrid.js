@@ -59,7 +59,7 @@ CURGRAPH.TickGrid = function(table,model){
         {
             "name": "V3_lifetime",
             "fieldname": "Lifetime",
-            "units": "sec",
+            "units": "hr",
             "color": "color5",
             "plot": "V3_lifetime"
         },
@@ -123,7 +123,7 @@ CURGRAPH.TickGrid = function(table,model){
             "fieldname": "Current e+ 1 bunch",
             "units": "mA",
             "color": "red",
-            "color": "color4",
+            "color": "color13",
             "plot": "V4_p1"
         },
         {
@@ -136,7 +136,7 @@ CURGRAPH.TickGrid = function(table,model){
         {
             "name": "V4_lifetime",
             "fieldname": "Lifetime",
-            "units": "sec",
+            "units": "hr",
             "color": "color5",
             "plot": "V4_lifetime"
         },
@@ -235,7 +235,7 @@ CURGRAPH.TickGrid = function(table,model){
         editable: true,
         columns: [
             { dataField: 'fieldname', width: 150, resizable: true, editable: false },
-            { dataField: 'value', width: 70, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
+            { dataField: 'value', width: 140, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
             { dataField: 'units', width: 45, resizable: true, editable: false },
             { dataField: 'display', width: 10, resizable: true, columntype: 'checkbox', cellclassname: hiddencellclass, editable: true }
         ],
@@ -274,7 +274,7 @@ CURGRAPH.TickGrid = function(table,model){
         editable: true,
         columns: [
             { dataField: 'fieldname', width: 150, resizable: true, editable: false },
-            { dataField: 'value', width: 70, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
+            { dataField: 'value', width: 140, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
             { dataField: 'units', width: 45, resizable: true, editable: false },
             { dataField: 'display', width: 10, resizable: true, columntype: 'checkbox', cellclassname: hiddencellclass, editable: true }
         ],
@@ -286,6 +286,20 @@ CURGRAPH.TickGrid = function(table,model){
         if(args.datafield=="display"){
             $(document).trigger("plot_display",[V4_table[args.rowindex],args.value]);
         }
+    });
+
+    $(".collapseTrigger").click(function(){
+	if($(this).hasClass("collapsed")){
+	    $(this).siblings(":not(this)").show();
+	    $(this).parent().next().show();
+	    $(this).removeClass("collapsed");
+	}
+	else{
+	     $(this).siblings(":not(this)").hide();
+	    $(this).parent().next().hide();
+	    $(this).addClass("collapsed");
+	}
+	
     });
 
     return {

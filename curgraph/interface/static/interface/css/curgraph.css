@@ -1,15 +1,15 @@
 .curgraph_table{
     border: none;
     color: white;
-    background-color: black;
+    background-color: rgb(9, 8, 33);
 }
 .jqx-grid-content{
-    background-color: black;
+    background-color: rgb(9, 8, 33);
 }
 .jqx-grid-cell{
     border: none;
     font-size: 12pt;
-    background-color: black;
+    background-color: rgb(9, 8, 33);
 }
 .jqx-chart-axis-text,
 .jqx-chart-label-text,
@@ -62,7 +62,7 @@
 }
 .color8
 {
-    color: #8cffb2;
+    color: #fc3a8b;
 }
 .color9
 {
@@ -80,15 +80,41 @@
 {
     color: #41c7f4;
 }
+.color13
+{
+    color: #f989b8;
+}
 
+.collapseTrigger{
+    cursor: pointer;
+}
 
 .hidden{
     display: none;
     background-color: black;
 }
+.resizable{
+    height: 460px;
+    width: 1050px;
+}
+#v3chart {
+    width: 98%;
+    height: 98%;
+}
+#v4chart {
+    width: 98%;
+    height: 98%;
+}
+#programPanel h3{
+    white-space: pre;
+}
+#statusPanel .jqx-grid-cell{
+    font-size: 16pt;
+    height: 40px;
+} 
 
 body{
-    background-color: black;
+    background-color: rgb(9, 8, 33);
     color: white;
     font-family: Helvetica;
     font-size: 12pt;
@@ -100,4 +126,9 @@ h1 {
 }
 h3 {
     font-family: Verdana, Arial, Helvetica, sans-serif; /* Рубленый шрифт заголовка */
+    font-weight: normal;
+}
+
+#graph_frequency {
+    width: 40px;
 }

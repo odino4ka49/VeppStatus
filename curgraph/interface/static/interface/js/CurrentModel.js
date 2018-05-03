@@ -1,6 +1,7 @@
 CURGRAPH.namespace("CURGRAPH.CurrentModel");
 CURGRAPH.CurrentModel = function(){
     var week_data,
+    program_data = [],
     graph_data = {},
     tick_data = [
     {
@@ -57,6 +58,9 @@ CURGRAPH.CurrentModel = function(){
     function getVarData(variable){
         return graph_data[variable];
     };
+    function getProgramData(){
+        return program_data;
+    };
     function getTickDataAsObj(){
         var result = {}
         tick_data.forEach(function(field){
@@ -78,19 +82,17 @@ CURGRAPH.CurrentModel = function(){
                 },
                 success: function(data){
                     week_data = data;
-                    console.log(week_data)
                     $(document).trigger("unset_loading_cursor");
                     $(document).trigger("got_weekdata");
                 }
             });
         };
 
-    function loadArrByVar(variable,start,end){
-        //console.log("loadarrbyvar")
+    function loadArrByVar(variable,start,end,freq){
             $(document).trigger("set_loading_cursor");
             $.ajax({
                 type: "GET",
-                data: {variable: JSON.stringify(variable), start: JSON.stringify(start), end: JSON.stringify(end) },
+                data: {variable: JSON.stringify(variable), start: JSON.stringify(start), end: JSON.stringify(end),freq: freq },
                 url: CURGRAPH.serveradr()+"interface/getArrByVar",
                 error: function(xhr, ajaxOptions, thrownError) {
                     $(document).trigger("unset_loading_cursor");
@@ -119,6 +121,20 @@ CURGRAPH.CurrentModel = function(){
             });
         };
 
+    function loadProgramData(){
+            $.ajax({
+                type: "GET",
+                url: CURGRAPH.serveradr()+"interface/getProgramData",
+                error: function(xhr, ajaxOptions, thrownError) {
+                    $(document).trigger("error_message",thrownError);
+                },
+                success: function(data){
+                    program_data = data;
+                    $(document).trigger("got_programdata");
+                }
+            });
+        };
+
     $(document).on("tick",function(){
         loadTickData();
     });
@@ -129,7 +145,9 @@ CURGRAPH.CurrentModel = function(){
         getTickData: getTickData,
         getWeekData: getWeekData,
         getVarData: getVarData,
+	getProgramData: getProgramData,
         loadArrByVar: loadArrByVar,
+	loadProgramData: loadProgramData,
         getTickDataAsObj: getTickDataAsObj
     };
 }

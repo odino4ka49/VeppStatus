@@ -48,7 +48,13 @@
     "Name": "V3_sep2"
   },
   {
-    "Name": "V3_lifetime"
+    "Name": "V3_lifetime",
+    "Function":
+    {
+      "Name": "Format",
+      "Parameter": "V3_lifetime",
+      "Coefficient": 0.000277
+    }
   },
   {
     "Name": "V3_currintegral",
@@ -94,24 +100,6 @@
     "Name": "V4_total"
   },
   {
-    "Name": "V4_total_e-",
-    "Function": {
-      "Name": "Total_current",
-      "Flag": "V4_polarity",
-      "Flag_values": ["e-"],
-      "Main_data": "V4_total"
-    }
-  },
-  {
-    "Name": "V4_total_e+",
-    "Function": {
-      "Name": "Total_current",
-      "Flag": "V4_polarity",
-      "Flag_values": ["e+"],
-      "Main_data": "V4_total"
-    }
-  },
-  {
     "Name": "V4_e1"
   },
   {
@@ -124,7 +112,13 @@
     "Name": "V4_p2"
   },
   {
-    "Name": "V4_lifetime"
+    "Name": "V4_lifetime",
+    "Function":
+    {
+      "Name": "Format",
+      "Parameter": "V4_lifetime",
+      "Coefficient": 0.000277
+    }
   },
   {
     "Name": "V4_luminosityE"

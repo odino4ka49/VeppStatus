@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="/static/jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="/static/jqwidgets/styles/jqx.darkblue.css" type="text/css" />
     <link rel="stylesheet" href="/static/interface/css/curgraph.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
     <script type="text/javascript" src="/static/interface/js/jquery-1.11.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/jqxcore.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/jqxdata.js"></script>
@@ -23,6 +25,7 @@
     <script type="text/javascript" src="/static/jqwidgets/jqxdatetimeinput.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/jqxcalendar.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/jqxtooltip.js"></script>
+    <script type="text/javascript" src="/static/jqwidgets/jqxwindow.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/globalization/globalize.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/globalization/globalize.culture.ru-RU.js"></script>
     <script type="text/javascript" src="/static/interface/js/Main.js"></script>
@@ -31,40 +34,40 @@
     <script type="text/javascript" src="/static/interface/js/TickGrid.js"></script>
     <script type="text/javascript" src="/static/interface/js/CurrentChart.js"></script>
     <script type="text/javascript" src="/static/interface/js/WeekChart.js"></script>
+    <script type="text/javascript" src="/static/interface/js/StatusPanel.js"></script>
+    <script type="text/javascript" src="/static/interface/js/ProgramPanel.js"></script>
 </head>
 <body>
     <table id="main_table">
         <tr>
             <td> <h1>Комплекс ВЭПП-4</h1>
             </td>
-            <td>
+            <td id="programPanel">
                 <h3>Начальник смены:</h3>
-                <h3>Программа работы:</h3>
             </td>
             <td></td>
             <td></td>
         </tr>
         <tr>
+            <td colspan="4"> 
+                <div id="statusPanel" class="curgraph_table">
+            </td>
+        </tr>
+        <tr>
             <td>
-                <h3>ВЭПП-3</h3>
+                <h3 class='collapseTrigger'>ВЭПП-3</h3>
                 <div id="v3tickData" class="curgraph_table">
                 </div>
             </td>
             <td colspan="3">
-                <table>
-                    <tr>
-                        <td>
-                            <button id="refresh_graph">Обновить</button>
-                        </td>
-                    </tr>
-                </table>
-                <div id="v3chart">
+                <div class="resizable">
+		    <div id="v3chart"></div>
                 </div>
             </td>
         </tr>
         <tr>
             <td>
-                <h3>ВЭПП-4</h3>
+                <h3 class='collapseTrigger'>ВЭПП-4</h3>
                 <div id="v4tickData" class="curgraph_table">
                 </div>
             </td>
@@ -75,16 +78,31 @@
                         </td>
                     </tr>
                 </table>
-                <div id="v4chart">
+                <div class="resizable">
+		    <div id="v4chart"></div>
                 </div>
             </td>
         </tr>
         <tr>
             <td>
             </td>
-            <td></td>
-            <td colspan="2">
+            <td colspan="2" align="left">
                 <input type="datetime" id="from_time"/>
+	    </td>
+	    <td align="right">
+                <table>
+                    <tr>
+                        <td>
+                            <input id="graph_frequency" type="number" value="10"/>
+                        </td>
+                        <td>
+                            <button id="reload_graph">Проредить</button>
+                        </td>
+                        <td>
+                            <button id="refresh_graph">Обновить</button>
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
     </table>

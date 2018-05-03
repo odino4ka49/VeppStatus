@@ -6,7 +6,8 @@
   },
   {
     "Name": "V3_status_int",
-    "Pv": "VEPP3:Status-RB"
+    "Pv": "VEPP3:Status-RB",
+    "MaxValue": 6
   },
   {
     "Name": "V3_time",
@@ -14,7 +15,8 @@
   },
   {
     "Name": "V3_mode",
-    "Pv": "VEPP3:TableName-RB"
+    "Pv": "VEPP3:TableName-RB",
+    "Datatype": "str"
   },
   {
     "Name": "V3_polarity",
@@ -23,23 +25,31 @@
   },
   {
     "Name": "V3_energy",
-    "Pv": "VEPP3:EnergySet-RB"
+    "Pv": "VEPP3:EnergySet-RB",
+    "MaxValue": 2100
   },
   {
     "Name": "V3_total",
-    "Pv": "VEPP3:CurrentTotal-RB"
+    "Pv": "VEPP3:CurrentTotal-RB",
+    "CutNegatives": true,
+    "MaxValue": 1000
   },
   {
     "Name": "V3_sep1",
-    "Pv": "VEPP3:CurrentSep1-RB"
+    "Pv": "VEPP3:CurrentSep1-RB",
+    "CutNegatives": true,
+    "MaxValue": 1000
   },
   {
     "Name": "V3_sep2",
-    "Pv": "VEPP3:CurrentSep2-RB"
+    "Pv": "VEPP3:CurrentSep2-RB",
+    "CutNegatives": true,
+    "MaxValue": 1000
   },
   {
     "Name": "V3_lifetime",
-    "Pv": "VEPP3:CurrentLifeTime-RB"
+    "Pv": "VEPP3:CurrentLifeTime-RB",
+    "MaxValue": 100000
   },
   {
     "Name": "V4_status",
@@ -48,11 +58,13 @@
   },
   {
     "Name": "V4_status_int",
-    "Pv": "VEPP4:Status-RB"
+    "Pv": "VEPP4:Status-RB",
+    "MaxValue": 6
   },
   {
     "Name": "V4_mode",
-    "Pv": "VEPP4:TableName-RB"
+    "Pv": "VEPP4:TableName-RB",
+    "Datatype": "str"
   },
   {
     "Name": "V4_polarity",
@@ -61,42 +73,61 @@
   },
   {
     "Name": "V4_energyset",
-    "Pv": "VEPP4:EnergySet-RB"
+    "Pv": "VEPP4:EnergySet-RB",
+    "CutNegatives": true,
+    "MaxValue": 6500
   },
   {
     "Name": "V4_energymeas",
-    "Pv": "VEPP4:EnergyMeas-RB"
+    "Pv": "VEPP4:EnergyMeas-RB",
+    "CutNegatives": true,
+    "MaxValue": 6500
   },
   {
     "Name": "V4_total",
-    "Pv": "VEPP4:CurrentTotal-RB"
+    "Pv": "VEPP4:CurrentTotal-RB",
+    "CutNegatives": true,
+    "MaxValue": 200
   },
   {
     "Name": "V4_e1",
-    "Pv": "VEPP4:CurrentE1-RB"
+    "Pv": "VEPP4:CurrentE1-RB",
+    "CutNegatives": true,
+    "MaxValue": 200
   },
   {
     "Name": "V4_e2",
-    "Pv": "VEPP4:CurrentE2-RB"
+    "Pv": "VEPP4:CurrentE2-RB",
+    "CutNegatives": true,
+    "MaxValue": 200
   },
   {
     "Name": "V4_p1",
-    "Pv": "VEPP4:CurrentP1-RB"
+    "Pv": "VEPP4:CurrentP1-RB",
+    "CutNegatives": true,
+    "MaxValue": 200
   },
   {
     "Name": "V4_p2",
-    "Pv": "VEPP4:CurrentP2-RB"
+    "Pv": "VEPP4:CurrentP2-RB",
+    "CutNegatives": true,
+    "MaxValue": 200
   },
   {
     "Name": "V4_lifetime",
-    "Pv": "VEPP4:CurrentLifeTime-RB"
+    "Pv": "VEPP4:CurrentLifeTime-RB",
+    "MaxValue": 100000
   },
   {
     "Name": "V4_luminosityE",
-    "Pv": "VEPP4:LuminostyE-RB"
+    "Pv": "VEPP4:LuminostyE-RB",
+    "CutNegatives": true,
+    "MaxValue": 5000
   },
   {
     "Name": "V4_luminosityP",
-    "Pv": "VEPP4:LuminostyP-RB"
+    "Pv": "VEPP4:LuminostyP-RB",
+    "CutNegatives": true,
+    "MaxValue": 5000
   }
 ]
