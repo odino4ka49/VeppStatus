@@ -112,7 +112,7 @@ CURGRAPH.WeekChart = function(chart,model){
 
     function getFrequency(){
 	var freq = $("#graph_frequency").val();
-	return ((freq!=undefined) && (freq > 0)) ? freq : 10;
+	return ((freq!=undefined) && (freq > 0)) ? freq : 30;
     };
 
     function updateChartData(){
@@ -151,7 +151,7 @@ CURGRAPH.WeekChart = function(chart,model){
         }
         var time = new Date();
         var date1 = new Date();
-            date1.setHours(date1.getHours() - 2);
+            date1.setHours(date1.getHours() - 12);
         //var range = $("#from_time").jqxDateTimeInput('getRange');
         no_time_changes = true;
         $("#from_time").jqxDateTimeInput('setRange', date1, time);
@@ -541,10 +541,10 @@ CURGRAPH.WeekChart = function(chart,model){
             weekAgo = new Date();
             weekAgo.setDate(weekAgo.getDate() - 7);
         var date1 = new Date();
-            date1.setHours(date1.getHours() - 2);
+            date1.setHours(date1.getHours() - 12);
         datesrange.from = date1;
         datesrange.to = time;
-        $("#from_time").jqxDateTimeInput({width: '480px', height: '25px', formatString: 'ddd, MMM dd yyyy HH:mm:ss', showTimeButton: true,  selectionMode: 'range', max: new Date(time.getFullYear(), time.getMonth(), time.getDate()), min: new Date(weekAgo.getFullYear(), weekAgo.getMonth(), weekAgo.getDate()) });
+        $("#from_time").jqxDateTimeInput({width: '400px', height: '25px', formatString: 'ddd, MMM dd yyyy HH:mm:ss', showTimeButton: true,  selectionMode: 'range', max: new Date(time.getFullYear(), time.getMonth(), time.getDate()), min: new Date(weekAgo.getFullYear(), weekAgo.getMonth(), weekAgo.getDate()) });
         $("#from_time").jqxDateTimeInput('setRange', date1, time);
         $('#from_time').on('valueChanged', function (event) {
             var date = event.args.date;

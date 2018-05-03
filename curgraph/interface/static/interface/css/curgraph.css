@@ -94,8 +94,8 @@
     background-color: black;
 }
 .resizable{
-    height: 460px;
-    width: 1050px;
+    height: 420px;
+    width: 770px;
 }
 #v3chart {
     width: 98%;
@@ -122,10 +122,10 @@ body{
 }
 
 h1 {
-    font-family: Verdana, Arial, Helvetica, sans-serif; /* Рубленый шрифт заголовка */
+    font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 h3 {
-    font-family: Verdana, Arial, Helvetica, sans-serif; /* Рубленый шрифт заголовка */
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     font-weight: normal;
 }
 

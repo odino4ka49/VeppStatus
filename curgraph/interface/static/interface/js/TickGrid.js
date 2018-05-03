@@ -102,7 +102,7 @@ CURGRAPH.TickGrid = function(table,model){
             "units": "mA",
             "color": "color2",
             "display": "true",
-            "plot": ["V4_total_e-","V4_total_e+"]
+            "plot": "V4_total"
         },
         {
             "name": "V4_e1",
@@ -231,11 +231,11 @@ CURGRAPH.TickGrid = function(table,model){
         source: v3_tableAdapter,
         localization: {thousandsSeparator: " "},
         autoheight: true,
-        width: 365,
+        width: 375,
         editable: true,
         columns: [
             { dataField: 'fieldname', width: 150, resizable: true, editable: false },
-            { dataField: 'value', width: 140, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
+            { dataField: 'value', width: 150, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
             { dataField: 'units', width: 45, resizable: true, editable: false },
             { dataField: 'display', width: 10, resizable: true, columntype: 'checkbox', cellclassname: hiddencellclass, editable: true }
         ],
@@ -270,11 +270,11 @@ CURGRAPH.TickGrid = function(table,model){
         source: v4_tableAdapter,
         localization: {thousandsSeparator: " "},
         autoheight: true,
-        width: 365,
+        width: 375,
         editable: true,
         columns: [
             { dataField: 'fieldname', width: 150, resizable: true, editable: false },
-            { dataField: 'value', width: 140, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
+            { dataField: 'value', width: 150, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
             { dataField: 'units', width: 45, resizable: true, editable: false },
             { dataField: 'display', width: 10, resizable: true, columntype: 'checkbox', cellclassname: hiddencellclass, editable: true }
         ],

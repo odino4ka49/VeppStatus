@@ -83,7 +83,8 @@ CURGRAPH.StatusPanel = function(table,model){
         source: status_tableAdapter,
         localization: {thousandsSeparator: " "},
         height: 160,
-        width: 1450,
+	rowsheight: 30,
+        width: 1150,
         editable: true,
         columns: [
             { dataField: 'fieldname', width: 150, resizable: true, editable: false },
