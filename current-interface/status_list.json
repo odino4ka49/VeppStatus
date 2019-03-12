@@ -49,11 +49,11 @@
   },
   {
     "Name": "V3_lifetime",
-    "Function":
-    {
-      "Name": "Format",
-      "Parameter": "V3_lifetime",
-      "Coefficient": 0.000277
+    "Function": {
+      "Name": "Clipping",
+      "Flag": "V3_total",
+      "Min_flag_value": 2,
+      "Substitute_value": 0
     }
   },
   {
@@ -113,11 +113,11 @@
   },
   {
     "Name": "V4_lifetime",
-    "Function":
-    {
-      "Name": "Format",
-      "Parameter": "V4_lifetime",
-      "Coefficient": 0.000277
+    "Function": {
+      "Name": "Clip",
+      "Flag": "V4_total",
+      "Min_flag_value": 50,
+      "Default_value": 0
     }
   },
   {

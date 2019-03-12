@@ -44,14 +44,14 @@ CURGRAPH.TickGrid = function(table,model){
         },
         {
             "name": "V3_sep1",
-            "fieldname": "Current 1 bunch",
+            "fieldname": "Current 1",
             "color": "color3",
             "units": "mA",
             "plot": "V3_sep1"
         },
         {
             "name": "V3_sep2",
-            "fieldname": "Current 2 bunch",
+            "fieldname": "Current 2",
             "color": "color4",
             "units": "mA",
             "plot": "V3_sep2"
@@ -59,7 +59,7 @@ CURGRAPH.TickGrid = function(table,model){
         {
             "name": "V3_lifetime",
             "fieldname": "Lifetime",
-            "units": "hr",
+            "units": "sec",
             "color": "color5",
             "plot": "V3_lifetime"
         },
@@ -106,21 +106,21 @@ CURGRAPH.TickGrid = function(table,model){
         },
         {
             "name": "V4_e1",
-            "fieldname": "Current e- 1 bunch",
+            "fieldname": "Current e- 1",
             "units": "mA",
             "color": "color3",
             "plot": "V4_e1"
         },
         {
             "name": "V4_e2",
-            "fieldname": "Current e- 2 bunch",
+            "fieldname": "Current e- 2",
             "units": "mA",
             "color": "color7",
             "plot": "V4_e2"
         },
         {
             "name": "V4_p1",
-            "fieldname": "Current e+ 1 bunch",
+            "fieldname": "Current e+ 1",
             "units": "mA",
             "color": "red",
             "color": "color13",
@@ -128,7 +128,7 @@ CURGRAPH.TickGrid = function(table,model){
         },
         {
             "name": "V4_p2",
-            "fieldname": "Current e+ 2 bunch",
+            "fieldname": "Current e+ 2",
             "units": "mA",
             "color": "color8",
             "plot": "V4_p2"
@@ -136,7 +136,7 @@ CURGRAPH.TickGrid = function(table,model){
         {
             "name": "V4_lifetime",
             "fieldname": "Lifetime",
-            "units": "hr",
+            "units": "sec",
             "color": "color5",
             "plot": "V4_lifetime"
         },
@@ -157,7 +157,7 @@ CURGRAPH.TickGrid = function(table,model){
         },
         {
             "name": "V4_luminosityMean",
-            "fieldname": "Mean Luminosity",
+            "fieldname": "Mean Lum",
             "units": "^28",
             "color": "color12",
             "plot": "V4_luminosityMean"
@@ -171,7 +171,7 @@ CURGRAPH.TickGrid = function(table,model){
         },
         {
             "name": "V4_lumintegral",
-            "fieldname": "Luminosity integral",
+            "fieldname": "Lum integral",
             "units": "1/nb",
             "color": "color11",
             "plot": "V4_lumintegral"
@@ -231,12 +231,13 @@ CURGRAPH.TickGrid = function(table,model){
         source: v3_tableAdapter,
         localization: {thousandsSeparator: " "},
         autoheight: true,
-        width: 375,
+	rowsheight: 20,
+        width: 295,
         editable: true,
         columns: [
-            { dataField: 'fieldname', width: 150, resizable: true, editable: false },
-            { dataField: 'value', width: 150, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
-            { dataField: 'units', width: 45, resizable: true, editable: false },
+            { dataField: 'fieldname', width: 125, resizable: true, editable: false, cellclassname: cellclass },
+            { dataField: 'value', width: 100, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
+            { dataField: 'units', width: 45, resizable: true, editable: false, cellclassname: cellclass },
             { dataField: 'display', width: 10, resizable: true, columntype: 'checkbox', cellclassname: hiddencellclass, editable: true }
         ],
         showHeader: false
@@ -270,12 +271,13 @@ CURGRAPH.TickGrid = function(table,model){
         source: v4_tableAdapter,
         localization: {thousandsSeparator: " "},
         autoheight: true,
-        width: 375,
+	rowsheight: 20,
+        width: 295,
         editable: true,
         columns: [
-            { dataField: 'fieldname', width: 150, resizable: true, editable: false },
-            { dataField: 'value', width: 150, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
-            { dataField: 'units', width: 45, resizable: true, editable: false },
+            { dataField: 'fieldname', width: 125, resizable: true, editable: false, cellclassname: cellclass },
+            { dataField: 'value', width: 100, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
+            { dataField: 'units', width: 45, resizable: true, editable: false, cellclassname: cellclass },
             { dataField: 'display', width: 10, resizable: true, columntype: 'checkbox', cellclassname: hiddencellclass, editable: true }
         ],
         showHeader: false

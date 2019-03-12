@@ -16,7 +16,8 @@ CURGRAPH.StatusPanel = function(table,model){
             "fieldname": "Энергия",
             "V4_field": "V4_energy",
             "V3_field": "V3_energy",
-            "IC": ""
+            "IC": "",
+            "color": "color1"
         },
         {
             "name": "status",
@@ -32,7 +33,8 @@ CURGRAPH.StatusPanel = function(table,model){
             "fieldname": "Ток",
             "V4_field": "V4_total",
             "V3_field": "V3_total",
-            "IC": ""
+            "IC": "",
+            "color": "color2"
         },
         {
             "name": "polarity",
@@ -63,6 +65,10 @@ CURGRAPH.StatusPanel = function(table,model){
         $("#statusPanel").jqxGrid('updateBoundData');
     });
 
+    var cellclass = function(row,datafield,value,rowdata){
+        return rowdata.color;
+    }
+
     var status_tablesource =
     {
         dataType: "json",
@@ -72,7 +78,8 @@ CURGRAPH.StatusPanel = function(table,model){
             { name: 'units' },
             { name: 'V4' },
             { name: 'V3' },
-            { name: 'IC' }
+            { name: 'IC' },
+            { name: 'color' }
         ],
         localData: status_table
     };
@@ -82,16 +89,16 @@ CURGRAPH.StatusPanel = function(table,model){
     {
         source: status_tableAdapter,
         localization: {thousandsSeparator: " "},
-        height: 160,
-	rowsheight: 30,
+        autoheight: true,
+	rowsheight: 28,
         width: 1150,
         editable: true,
         columns: [
-            { dataField: 'fieldname', width: 150, resizable: true, editable: false },
-            { dataField: 'units', width: 85, resizable: true, editable: false },
-            { dataField: 'V4', width: 150, resizable: true, cellsalign: 'center', editable: false },
-            { dataField: 'V3', width: 250, resizable: true, cellsalign: 'center', editable: false },
-            { dataField: 'IC', width: 250, resizable: true, cellsalign: 'center', editable: false },
+            { dataField: 'fieldname', width: 150, resizable: true, editable: false, cellclassname: cellclass },
+            { dataField: 'units', width: 85, resizable: true, editable: false, cellclassname: cellclass },
+            { dataField: 'V4', width: 150, resizable: true, cellsalign: 'center', editable: false, cellclassname: cellclass },
+            { dataField: 'V3', width: 250, resizable: true, cellsalign: 'center', editable: false, cellclassname: cellclass },
+            { dataField: 'IC', width: 250, resizable: true, cellsalign: 'center', editable: false, cellclassname: cellclass },
         ],
         showHeader: false
     });

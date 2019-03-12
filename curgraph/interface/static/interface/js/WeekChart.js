@@ -48,7 +48,8 @@ CURGRAPH.WeekChart = function(chart,model){
                 "values":[],
                 "chartname":"v4chart",
                 "color": "#42f4a7",
-                "display": "default"
+                "display": "default",
+		"line-width": '5',
             },"V4_e1":{
                 "scales":'scale-x,scale-y',
                 "values":[],
@@ -79,7 +80,8 @@ CURGRAPH.WeekChart = function(chart,model){
                 "values":[],
                 "chartname":"v4chart",
                 "color": "#6fb7f7",
-                "display": "default"
+                "display": "default",
+		"line-width": 15,
             },"V4_luminosityP":{
                 "scales":'scale-x,scale-y-4',
                 "values":[],
@@ -199,7 +201,7 @@ CURGRAPH.WeekChart = function(chart,model){
                 values : data,
                 text : variable,
                 lineColor: plot_info.color,
-                lineWidth: 1,
+                lineWidth: 2,
                 scales: plot_info.scales
             }
         });

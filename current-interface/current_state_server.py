@@ -157,6 +157,12 @@ def saveData():
                     value = next((x for x in curshot if x["Name"] == func["Substitute_data"]), None)["Value"]
                 else:
                     value = next((x for x in curshot if x["Name"] == func["Main_data"]), None)["Value"]
+            elif func["Name"] == "Clip":
+                flag = next((x for x in curshot if x["Name"] == func["Flag"]), None)["Value"]
+                if flag > func["Min_flag_value"]:
+                    value = next((x for x in curshot if x["Name"] == item["Name"]), None)["Value"]
+                else:
+                    value = func["Default_value"]
             elif func["Name"] == "Total_current":
                 flag = next((x for x in curshot if x["Name"] == func["Flag"]), None)["Value"]
                 if flag in func["Flag_values"]:
