@@ -19,6 +19,10 @@ CURGRAPH.serveradr = function(){
 	return location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '')+"/";
 };
 
+function getPosition() {
+	return location.pathname.split("/")[2];
+};
+
 $(document).on("set_loading_cursor",function(){
     document.body.style.cursor='wait';
 });
@@ -29,7 +33,7 @@ $(document).ready(function(){
     var model = CURGRAPH.CurrentModel(),
         controller = CURGRAPH.CurrentController(model,null);
     var program_panel = CURGRAPH.ProgramPanel($("#programPanel"),model);
-    var datatable = CURGRAPH.TickGrid($("#tickData"),model);
+    var datatable = CURGRAPH.TickGrid($("#tickData"),model,getPosition());
     var datatable = CURGRAPH.StatusPanel($("#statusPanel"),model);
     var chart = CURGRAPH.WeekChart($("#v3chart"),model);
     $.jqx.theme = 'darkblue';

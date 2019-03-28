@@ -179,7 +179,6 @@ def saveData():
                 timestamp = time.strftime("%H%M%S")
                 if timestamp == "090000" or timestamp == "210000":
                     value = 0
-                    item["Prevtime"] = timenow
                 elif "Prevtime" in item:
                     prev = week_data_arr[-1]
                     flag = next((x for x in curshot if x["Name"] == func["Flag"]), None)["Value"]
@@ -190,6 +189,7 @@ def saveData():
                     denominator = func["Denominator"]
                     dt = timenow-item["Prevtime"]
                     integral_prev = prev[getVariablePosition(item["Name"])]
+                    value = integral_prev
                     if isinstance(func["Parameter"],list):
                         n=0
                         for par in func["Parameter"]:
@@ -204,14 +204,12 @@ def saveData():
                         param_prev = prev[getVariablePosition(func["Parameter"])]
                     if flag in flag_values:
                         if flag_prev in flag_values:
-                            value = integral_prev+(param+param_prev)*dt/(2*denominator)
+                            value += (param+param_prev)*dt/(2*denominator)
                         else:
-                            value = integral_prev+(param)*dt/(2*denominator)
+                            value += (param)*dt/(2*denominator)
                     elif flag_prev in flag_values:
-                            value = integral_prev+(param_prev)*dt/(2*denominator)
-                    item["Prevtime"] = timenow
-                else:
-                    value = 0
+                        value += (param_prev)*dt/(2*denominator)
+                item["Prevtime"] = timenow
             newshot[item["Name"]] = value
             next((x for x in curshot if x["Name"] == item["Name"]), None)["Value"] = value
         if type(newshot[item["Name"]])==float:

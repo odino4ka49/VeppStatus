@@ -1,7 +1,7 @@
 CURGRAPH.namespace("CURGRAPH.TickGrid");
-CURGRAPH.TickGrid = function(table,model){
+CURGRAPH.TickGrid = function(table,model,vepp){
     var model=model,
-    testi=1;
+    	vepp=vepp,
         tickdata=[],
         V3_table = [{
             "name": "V3_status",
@@ -65,7 +65,7 @@ CURGRAPH.TickGrid = function(table,model){
         },
         {
             "name": "V3_currintegral",
-            "fieldname": "Current integral",
+            "fieldname": "Cur integral",
             "units": "C",
             "color": "color6",
             "plot":"V3_currintegral"
@@ -164,7 +164,7 @@ CURGRAPH.TickGrid = function(table,model){
         },
         {
             "name": "V4_currintegral",
-            "fieldname": "Current integral",
+            "fieldname": "Cur integral",
             "units": "C",
             "color": "color6",
             "plot": "V4_currintegral"
@@ -179,26 +179,34 @@ CURGRAPH.TickGrid = function(table,model){
         ];
 
     function updateTableData(){
-        V3_table.forEach(function(table_item){
-            var tick_item = $.grep(tickdata, function(e){ return e.Name==table_item.name; })[0]
-            if(tick_item){
-                table_item.value = tick_item.Value;
-            }
+	if(vepp!="vepp4"){
+		V3_table.forEach(function(table_item){
+		    var tick_item = $.grep(tickdata, function(e){ return e.Name==table_item.name; })[0]
+		    if(tick_item){
+			table_item.value = tick_item.Value;
+		    }
 
-        })
-        V4_table.forEach(function(table_item){
-            var tick_item = $.grep(tickdata, function(e){ return e.Name==table_item.name; })[0]
-            if(tick_item){
-                table_item.value = tick_item.Value;
-            }
-        })
+		})
+	}
+	if(vepp!="vepp3"){
+		V4_table.forEach(function(table_item){
+		    var tick_item = $.grep(tickdata, function(e){ return e.Name==table_item.name; })[0]
+		    if(tick_item){
+		        table_item.value = tick_item.Value;
+		    }
+		})
+	}
     };
 
     $(document).on("got_tickdata",function(){
         tickdata = model.getTickData();
         updateTableData();
-        $("#v3tickData").jqxGrid('updateBoundData');
-        $("#v4tickData").jqxGrid('updateBoundData');
+	if(vepp!="vepp4"){
+	    $("#v3tickData").jqxGrid('updateBoundData');
+	}
+	if(vepp!="vepp3"){
+            $("#v4tickData").jqxGrid('updateBoundData');
+	}
     });
 
     var cellclass = function(row,datafield,value,rowdata){
@@ -210,85 +218,89 @@ CURGRAPH.TickGrid = function(table,model){
         }
     }
 
-    var v3_tablesource =
-    {
-        dataType: "json",
-        dataFields: [
-            { name: 'value' },
-            { name: 'name' },
-            { name: 'fieldname' },
-            { name: 'units' },
-            { name: 'color' },
-            { name: 'display', type: 'bool' },
-            { name: 'displaycheckbox', type: 'bool' }
-        ],
-        localData: V3_table
-    };
-    var v3_tableAdapter = new $.jqx.dataAdapter(v3_tablesource);
-    v3_tableAdapter.dataBind();
-    $("#v3tickData").jqxGrid(
-    {
-        source: v3_tableAdapter,
-        localization: {thousandsSeparator: " "},
-        autoheight: true,
-	rowsheight: 20,
-        width: 295,
-        editable: true,
-        columns: [
-            { dataField: 'fieldname', width: 125, resizable: true, editable: false, cellclassname: cellclass },
-            { dataField: 'value', width: 100, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
-            { dataField: 'units', width: 45, resizable: true, editable: false, cellclassname: cellclass },
-            { dataField: 'display', width: 10, resizable: true, columntype: 'checkbox', cellclassname: hiddencellclass, editable: true }
-        ],
-        showHeader: false
-    });
-    $("#v3tickData").on('cellendedit', function (event) {
-        var args = event.args;
-        V3_table[args.rowindex][args.datafield] = args.value;
-        if(args.datafield=="display"){
-            $(document).trigger("plot_display",[V3_table[args.rowindex],args.value]);
-        }
-    });
+    if(vepp!="vepp4"){
+	var v3_tablesource =
+	{
+		dataType: "json",
+		dataFields: [
+		    { name: 'value' },
+		    { name: 'name' },
+		    { name: 'fieldname' },
+		    { name: 'units' },
+		    { name: 'color' },
+		    { name: 'display', type: 'bool' },
+		    { name: 'displaycheckbox', type: 'bool' }
+		],
+		localData: V3_table
+	};
+	var v3_tableAdapter = new $.jqx.dataAdapter(v3_tablesource);
+	v3_tableAdapter.dataBind();
+	$("#v3tickData").jqxGrid(
+	{
+		source: v3_tableAdapter,
+		localization: {thousandsSeparator: " "},
+		autoheight: true,
+		rowsheight: 20,
+		width: 295,
+		editable: true,
+		columns: [
+		    { dataField: 'fieldname', width: 125, resizable: true, editable: false, cellclassname: cellclass },
+		    { dataField: 'value', width: 100, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
+		    { dataField: 'units', width: 45, resizable: true, editable: false, cellclassname: cellclass },
+		    { dataField: 'display', width: 10, resizable: true, columntype: 'checkbox', cellclassname: hiddencellclass, editable: true }
+		],
+		showHeader: false
+	});
+	$("#v3tickData").on('cellendedit', function (event) {
+		var args = event.args;
+		V3_table[args.rowindex][args.datafield] = args.value;
+		if(args.datafield=="display"){
+		    $(document).trigger("plot_display",[V3_table[args.rowindex],args.value]);
+		}
+	});
+    }
 
-    var v4_tablesource =
-    {
-        dataType: "json",
-        dataFields: [
-            { name: 'value' },
-            { name: 'name' },
-            { name: 'fieldname' },
-            { name: 'units' },
-            { name: 'color' },
-            { name: 'display', type: 'bool' },
-            { name: 'displaycheckbox', type: 'bool' }
-        ],
-        localData: V4_table
-    };
-    var v4_tableAdapter = new $.jqx.dataAdapter(v4_tablesource);
-    v4_tableAdapter.dataBind();
-    $("#v4tickData").jqxGrid(
-    {
-        source: v4_tableAdapter,
-        localization: {thousandsSeparator: " "},
-        autoheight: true,
-	rowsheight: 20,
-        width: 295,
-        editable: true,
-        columns: [
-            { dataField: 'fieldname', width: 125, resizable: true, editable: false, cellclassname: cellclass },
-            { dataField: 'value', width: 100, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
-            { dataField: 'units', width: 45, resizable: true, editable: false, cellclassname: cellclass },
-            { dataField: 'display', width: 10, resizable: true, columntype: 'checkbox', cellclassname: hiddencellclass, editable: true }
-        ],
-        showHeader: false
-    });
-    $("#v4tickData").on('cellendedit', function (event) {
-        var args = event.args;
-        V4_table[args.rowindex][args.datafield] = args.value;
-        if(args.datafield=="display"){
-            $(document).trigger("plot_display",[V4_table[args.rowindex],args.value]);
-        }
-    });
+    if(vepp!="vepp3"){
+	var v4_tablesource =
+	{
+		dataType: "json",
+		dataFields: [
+		    { name: 'value' },
+		    { name: 'name' },
+		    { name: 'fieldname' },
+		    { name: 'units' },
+		    { name: 'color' },
+		    { name: 'display', type: 'bool' },
+		    { name: 'displaycheckbox', type: 'bool' }
+		],
+		localData: V4_table
+	};
+	var v4_tableAdapter = new $.jqx.dataAdapter(v4_tablesource);
+	v4_tableAdapter.dataBind();
+	$("#v4tickData").jqxGrid(
+	{
+		source: v4_tableAdapter,
+		localization: {thousandsSeparator: " "},
+		autoheight: true,
+		rowsheight: 20,
+		width: 295,
+		editable: true,
+		columns: [
+		    { dataField: 'fieldname', width: 125, resizable: true, editable: false, cellclassname: cellclass },
+		    { dataField: 'value', width: 100, resizable: true, cellsalign: 'right', cellclassname: cellclass, editable: false },
+		    { dataField: 'units', width: 45, resizable: true, editable: false, cellclassname: cellclass },
+		    { dataField: 'display', width: 10, resizable: true, columntype: 'checkbox', cellclassname: hiddencellclass, editable: true }
+		],
+		showHeader: false
+	});
+	$("#v4tickData").on('cellendedit', function (event) {
+		var args = event.args;
+		V4_table[args.rowindex][args.datafield] = args.value;
+		if(args.datafield=="display"){
+		    $(document).trigger("plot_display",[V4_table[args.rowindex],args.value]);
+		}
+	});
+    }
 
     $(".collapseTrigger").click(function(){
 	if($(this).hasClass("collapsed")){

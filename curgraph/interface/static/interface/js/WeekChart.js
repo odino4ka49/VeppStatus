@@ -246,6 +246,10 @@ CURGRAPH.WeekChart = function(chart,model){
 
             },
             scaleX:{
+		guide: {
+		    lineColor: "gray",
+		    visible: true
+		},
                 zooming: true,
                 transform:{
                     type: 'date',
@@ -284,7 +288,8 @@ CURGRAPH.WeekChart = function(chart,model){
             },
             scaleY:{
                 "guide":{
-                    "visible":false
+		    lineColor: "gray",
+                    //"visible":false
                 },
                 zooming:true,
                 label:{
@@ -298,7 +303,8 @@ CURGRAPH.WeekChart = function(chart,model){
             },
             scaleY2:{
                 "guide":{
-                    "visible":false
+		    lineColor: "gray",
+                    //"visible":false
                 },
                 zooming:true,
                 label:{
@@ -314,7 +320,8 @@ CURGRAPH.WeekChart = function(chart,model){
             },
             scaleY3:{
                 "guide":{
-                    "visible":false
+		    lineColor: "gray",
+                    //"visible":false
                 },
                 zooming:true,
                 label:{
@@ -391,6 +398,10 @@ CURGRAPH.WeekChart = function(chart,model){
 
             },
             scaleX:{
+		guide: {
+		    lineColor: "gray",
+		    visible: true
+		},
                 zooming: true,
                 transform:{
                     type: 'date',
@@ -429,7 +440,8 @@ CURGRAPH.WeekChart = function(chart,model){
             },
             scaleY:{
                 "guide":{
-                    "visible":false
+		    lineColor: "gray",
+                    //"visible":false
                 },
                 zooming:true,
                 label:{
@@ -443,7 +455,8 @@ CURGRAPH.WeekChart = function(chart,model){
             },
             scaleY2:{
                 "guide":{
-                    "visible":false
+		    lineColor: "gray",
+                    //"visible":false
                 },
                 zooming:true,
                 label:{
@@ -459,7 +472,8 @@ CURGRAPH.WeekChart = function(chart,model){
             },
             scaleY3:{
                 "guide":{
-                    "visible":false
+		    lineColor: "gray",
+                    //"visible":false
                 },
                 zooming:true,
                 label:{
@@ -475,7 +489,8 @@ CURGRAPH.WeekChart = function(chart,model){
             },
             scaleY4:{
                 "guide":{
-                    "visible":false
+		    lineColor: "gray",
+                    //"visible":false
                 },
                 zooming:true,
                 label:{
@@ -491,7 +506,8 @@ CURGRAPH.WeekChart = function(chart,model){
             },
             scaleY5:{
                 "guide":{
-                    "visible":false
+		    lineColor: "gray",
+                    //"visible":false
                 },
                 zooming:true,
                 label:{

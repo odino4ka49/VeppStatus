@@ -50,10 +50,10 @@
   {
     "Name": "V3_lifetime",
     "Function": {
-      "Name": "Clipping",
+      "Name": "Clip",
       "Flag": "V3_total",
       "Min_flag_value": 2,
-      "Substitute_value": 0
+      "Default_value": 0
     }
   },
   {

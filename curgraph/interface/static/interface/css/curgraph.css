@@ -103,6 +103,10 @@
     height: 290px;
     width: 100%;
 }
+.fullscreen{
+    height: 570px;
+    width: 100%;
+}
 #v3chart {
     width: 100%;
     height: 100%;
@@ -140,11 +144,13 @@ h1 {
     font-size: 38px;
     margin: 0px;
     letter-spacing: -3px;
+    color: #fc7fff;
 }
 h3 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     margin: 0px;
     letter-spacing: -1px;
+    color: #fc7fff;
 }
 
 #graph_frequency {

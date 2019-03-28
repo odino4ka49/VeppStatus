@@ -21,6 +21,22 @@ def index(request):
     thread2.start()
     return HttpResponse(template.render())
 
+def vepp3(request):
+    template = loader.get_template('interface/v3.html')
+    thread1 = threading.Thread(target=scanTickData)
+    thread1.start()
+    thread2 = threading.Thread(target=receiveBigData)
+    thread2.start()
+    return HttpResponse(template.render())
+
+def vepp4(request):
+    template = loader.get_template('interface/v4.html')
+    thread1 = threading.Thread(target=scanTickData)
+    thread1.start()
+    thread2 = threading.Thread(target=receiveBigData)
+    thread2.start()
+    return HttpResponse(template.render())
+
 def getProgramData(request):
     programdata = []
     try:
