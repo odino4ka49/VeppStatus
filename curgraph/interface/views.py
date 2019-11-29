@@ -46,7 +46,7 @@ def getProgramData(request):
         cur.execute("""SELECT ddate, dname, program, nduty FROM ttvduty WHERE ddate = %s AND nduty = %s;""",(date.today().isoformat(),duty,))
         rows = cur.fetchall()
 	row = rows[0]
-	if isinstance(row, list):
+	if isinstance(row, tuple):
 	    programdata = [row[1].decode('koi8-r').encode('utf-8'),row[2].decode('koi8-r').encode('utf-8')]
 	cur.close()
 	conn.close()

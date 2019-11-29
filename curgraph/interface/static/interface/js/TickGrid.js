@@ -4,30 +4,6 @@ CURGRAPH.TickGrid = function(table,model,vepp){
     	vepp=vepp,
         tickdata=[],
         V3_table = [{
-            "name": "V3_status",
-            "fieldname": "Status",
-            "units": "",
-            "displaycheckbox":"false",
-        },
-        {
-            "name": "V3_time",
-            "fieldname": "From start",
-            "units": "sec",
-            "displaycheckbox":"false",
-        },
-        {
-            "name": "V3_mode",
-            "fieldname": "Mode",
-            "units": "",
-            "displaycheckbox":"false",
-        },
-        {
-            "name": "V3_polarity",
-            "fieldname": "Polarity",
-            "units": "",
-            "displaycheckbox":"false",
-        },
-        {
             "name": "V3_energy",
             "fieldname": "Energy",
             "units": "MeV",
@@ -71,13 +47,32 @@ CURGRAPH.TickGrid = function(table,model,vepp){
             "plot":"V3_currintegral"
         }
         ],
-        V4_table = [{
-            "name": "V4_status",
-            "fieldname": "Status",
+	V3_status_data = [
+        {
+            "name": "V3_mode",
+            "fieldname": "Mode",
             "units": "",
-            "displaycheckbox":"false"
+            "displaycheckbox":"false",
         },
         {
+            "name": "V3_polarity",
+            "fieldname": "Polarity",
+            "units": "",
+            "displaycheckbox":"false",
+        },{
+	    "name": "V3_status",
+            "fieldname": "Status",
+            "units": "",
+	    "translate": "rus",
+            "displaycheckbox":"false",
+        },
+        {
+            "name": "V3_time",
+            "fieldname": "From start",
+            "units": "sec",
+            "displaycheckbox":"false",
+        }],
+	V4_status_data = [{
             "name": "V4_mode",
             "fieldname": "Mode",
             "units": "",
@@ -90,6 +85,13 @@ CURGRAPH.TickGrid = function(table,model,vepp){
             "displaycheckbox":"false"
         },
         {
+            "name": "V4_status",
+            "fieldname": "Status",
+            "units": "",
+	    "translate": "rus",
+            "displaycheckbox":"false"
+        }],
+        V4_table = [{
             "name": "V4_energy",
             "fieldname": "Energy",
             "units": "MeV",
@@ -178,34 +180,79 @@ CURGRAPH.TickGrid = function(table,model,vepp){
         }
         ];
 
-    function updateTableData(){
+    function translate(status){
 	if(vepp!="vepp4"){
-		V3_table.forEach(function(table_item){
-		    var tick_item = $.grep(tickdata, function(e){ return e.Name==table_item.name; })[0]
-		    if(tick_item){
-			table_item.value = tick_item.Value;
-		    }
-
-		})
+	    switch (status) {
+		case 1:
+		    return "Накопление";
+		case 2:
+		    return "Ускорение";
+		case 3:
+		    return "Эксперимент";
+		case 4:
+		    return "Выпуск";
+		case 5:
+		    return "Стандартный цикл";
+		case 6:
+		    return "Готов к перепуску";
+		case 7:
+		    return "эксперимент DEJTRON";
+		default:
+		    return status;
+	    }
 	}
 	if(vepp!="vepp3"){
-		V4_table.forEach(function(table_item){
-		    var tick_item = $.grep(tickdata, function(e){ return e.Name==table_item.name; })[0]
-		    if(tick_item){
-		        table_item.value = tick_item.Value;
-		    }
-		})
+	    switch (status) {
+		case 1:
+		    return "Инжекция";
+		case 2:
+		    return "Ускорение";
+		case 3:
+		    return "Эксперимент";
+		case 5:
+		    return "Стандартный цикл";
+		case 6:
+		    return "Измерительный";
+		default:
+		    return status;
+	    }
 	}
-    };
+    }
+ 
+    function updateObjectOnTick(object){
+	object.forEach(function(table_item){
+	    var tick_item = $.grep(tickdata, function(e){ return e.Name==table_item.name; })[0]
+	    if(tick_item){
+		table_item.value = tick_item.Value;
+		if(table_item.translate == "rus"){
+		    table_item.value = translate(table_item.value);
+		}
+	    }
+	});
+    }
+
+    function updateTableStatus(status_teg,status_data){
+	var text = " ";
+	status_data.forEach(function(item){
+	    text = text.concat(item.value+"  ");
+	});
+	$(status_teg).text(text);
+    }
 
     $(document).on("got_tickdata",function(){
         tickdata = model.getTickData();
-        updateTableData();
+
 	if(vepp!="vepp4"){
+	    updateObjectOnTick(V3_table);
+	    updateObjectOnTick(V3_status_data);
 	    $("#v3tickData").jqxGrid('updateBoundData');
+	    updateTableStatus("#v3status",V3_status_data);
 	}
 	if(vepp!="vepp3"){
+	    updateObjectOnTick(V4_table);
+	    updateObjectOnTick(V4_status_data);
             $("#v4tickData").jqxGrid('updateBoundData');
+	    updateTableStatus("#v4status",V4_status_data);
 	}
     });
 

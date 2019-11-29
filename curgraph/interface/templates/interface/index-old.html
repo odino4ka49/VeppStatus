@@ -28,16 +28,13 @@
     <script type="text/javascript" src="/static/jqwidgets/jqxwindow.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/globalization/globalize.js"></script>
     <script type="text/javascript" src="/static/jqwidgets/globalization/globalize.culture.ru-RU.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script type="text/javascript" src="/static/interface/js/Main.js"></script>
     <script type="text/javascript" src="/static/interface/js/CurrentModel.js"></script>
     <script type="text/javascript" src="/static/interface/js/CurrentController.js"></script>
     <script type="text/javascript" src="/static/interface/js/TickGrid.js"></script>
-    <script type="text/javascript" src="/static/interface/js/TimePicker.js"></script>
     <script type="text/javascript" src="/static/interface/js/CurrentChart.js"></script>
     <script type="text/javascript" src="/static/interface/js/WeekChart.js"></script>
+    <script type="text/javascript" src="/static/interface/js/StatusPanel.js"></script>
     <script type="text/javascript" src="/static/interface/js/ProgramPanel.js"></script>
 </head>
 <body>
@@ -54,8 +51,13 @@
             </td>
         </tr>
         <tr>
+            <td colspan="4"> 
+                <div id="statusPanel" class="curgraph_table">
+            </td>
+        </tr>
+        <tr>
             <td>
-                <h3 class='collapseTrigger'>ВЭПП-3</h3><pre><h3 id="v3status"></h3></pre>
+                <h3 class='collapseTrigger'>ВЭПП-3</h3>
                 <div id="v3tickData" class="curgraph_table">
                 </div>
             </td>
@@ -67,7 +69,7 @@
         </tr>
         <tr>
             <td width="292" rowspan="2">
-                <h3 class='collapseTrigger'>ВЭПП-4</h3><pre><h3 id="v4status"></h3></pre>
+                <h3 class='collapseTrigger'>ВЭПП-4</h3>
                 <div id="v4tickData" class="curgraph_table">
                 </div>
             </td>
@@ -85,13 +87,7 @@
         </tr>
         <tr>
             <td colspan="2" align="left">
-		<input id="datetimerange" type="text" name="datetimes" />
-                <br/>
-		<button id="1h" onclick=changeDateRange("1h")>1 час</button>
-                <button id="3h" onclick=changeDateRange("3h")>3 часа</button>
-                <button id="9h" onclick=changeDateRange("9h")>Смена</button>
-                <button id="24h" onclick=changeDateRange("24h")>Сутки</button>
-                <button id="week" onclick=changeDateRange("week")>Неделя</button>
+                <input type="datetime" id="from_time"/>
 	    </td>
 	    <td align="right">
                 <table>

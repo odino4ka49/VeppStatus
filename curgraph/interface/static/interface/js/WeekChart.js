@@ -124,11 +124,12 @@ CURGRAPH.WeekChart = function(chart,model){
         for(key in adddata){
             var addlength = adddata[key].length,
                 graphvalues = graphdata[key].values;
-            for(var i=addlength-1; i>=0; i--){
-                if(graphvalues[i]&&graphvalues[i][0]<datesrange.from.getTime()){
+            /*for(var i=addlength-1; i>=0; i--){
+		var dates = getDateTime();
+                if(graphvalues[i]&&graphvalues[i][0]<dates[0].unix()){
                     delete graphvalues[i];
                 }
-            }
+            }*/
             for(var i=graphvalues.length-1;i>graphvalues.length-addlength;i--){
                 for(var j=0;j<addlength;j++){
                     if(graphvalues[i]&&graphvalues[i][0]==adddata[key][j][0]){
@@ -138,25 +139,14 @@ CURGRAPH.WeekChart = function(chart,model){
                     }
                 }
             }
-            //graphdata[key].values.splice(0,adddata[key].length);
             graphdata[key].values = graphvalues.concat(adddata[key]);
             adddata[key] = [];
             zingchart.exec(graphdata[key].chartname, 'setseriesvalues', {
                 'plotid':key,
                 'values':graphvalues
             });
-            /*zingchart.exec(graphdata[key].chartname, 'appendseriesvalues', {
-                'plotindex':graphdata[key].plotindex,
-                'values':adddata[key]
-            });
-            adddata[key] = [];*/
         }
-        var time = new Date();
-        var date1 = new Date();
-            date1.setHours(date1.getHours() - 12);
-        //var range = $("#from_time").jqxDateTimeInput('getRange');
-        no_time_changes = true;
-        $("#from_time").jqxDateTimeInput('setRange', date1, time);
+        timeTickingChanges();
         counter = 30;
     };
 
@@ -368,9 +358,6 @@ CURGRAPH.WeekChart = function(chart,model){
             height: '100%',
             width: '100%'
         });
-	zingchart.zoom = function(p){
-	    console.log(p);
-	}
         var v4chartData = {
             type: "line",
             backgroundColor:"black",
@@ -548,12 +535,12 @@ CURGRAPH.WeekChart = function(chart,model){
     };
 
     function loadGraphData(){
-        var dates = $("#from_time").jqxDateTimeInput('getRange');
+	var dates = getDateTime();
         for(key of visible_plots){
-            model.loadArrByVar(key,dates.from.getTime()/1000|0,dates.to.getTime()/1000|0,getFrequency());
+            model.loadArrByVar(key,dates[0].unix(),dates[1].unix(),getFrequency());
         }
     };
-
+/*
     function initTimeSelectors(){
         var time = new Date(),
             weekAgo = new Date();
@@ -576,7 +563,7 @@ CURGRAPH.WeekChart = function(chart,model){
                 no_time_changes = false;
             }
         });
-    };
+    };*/
 
     function initRefreshButton(){
         document.getElementById('refresh_graph').onclick = function() {
@@ -628,14 +615,14 @@ CURGRAPH.WeekChart = function(chart,model){
 
     $(document).on("plot_display",function(event,variable_info,display){
         if(display){
-            var range = $("#from_time").jqxDateTimeInput('getRange');
+	    var dates = getDateTime();
             if(typeof variable_info["plot"]=="string"){
-                model.loadArrByVar(variable_info["plot"],range.from.getTime()/1000|0,range.to.getTime()/1000|0,getFrequency());
+                model.loadArrByVar(variable_info["plot"],dates[0].unix(),dates[1].unix(),getFrequency());
 		visible_plots.push(variable_info["plot"]);
             }
             else{
                 variable_info["plot"].forEach(function(plot){
-                    model.loadArrByVar(plot,range.from.getTime()/1000|0,range.to.getTime()/1000|0,getFrequency());
+                    model.loadArrByVar(plot,dates[0].unix(),dates[1].unix(),getFrequency());
 		    visible_plots.push(plot);
                 });
             }
@@ -654,19 +641,12 @@ CURGRAPH.WeekChart = function(chart,model){
         }
     });
 
-    $(document).on("set_timeperiod",function(){
-    console.log("timechanged")
-        var v3det = document.getElementById("v3detalization").value;
-        var v4det = document.getElementById("v4detalization").value;
-        if(v3det!=v3detalization){
-            v3detalization = v3det;
-        }
-        if(v4det!=v4detalization){
-            v4detalization = v4det;
-        }
+    $(document).on("set_timeperiod",function(event,ref){
+	refresh = ref;
+        loadGraphData();
     });
 
-    initTimeSelectors();
+    //initTimeSelectors();
     initRefreshButton();
     initReloadButton();
     initVisible();
@@ -676,10 +656,6 @@ CURGRAPH.WeekChart = function(chart,model){
     return {
 
     };
-};
-
-function setDetails(){
-    $(document).trigger("set_timeperiod");
 };
 
 //not sure if we need this, for faster mousewheel response

@@ -5,15 +5,11 @@ CURGRAPH.ProgramPanel = function(box,model){
 	programdata = [];
 
     function updateProgramPanel(){
-        programbox.children("h3").text("Начальник смены: "+programdata[0]+"         Программа работы: "+programdata[1])
-	/*.each(function(i) {
-	    if(i==0){
-		$( this ).text("Начальник смены: "+programdata[0])
-	    }
-	    else if(i==1){
-		$( this ).text("Программа работы: "+programdata[1])
-	    }
-	});*/
+	var person = programdata[0];
+	var program = programdata[1];
+	if(!person) person = "";
+	if(!program) program = "";
+        programbox.children("h3").text("Начальник смены: "+ person +"         Программа работы: "+ program)
     };
 
 

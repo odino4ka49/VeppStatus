@@ -38,14 +38,15 @@
     <script type="text/javascript" src="/static/interface/js/TimePicker.js"></script>
     <script type="text/javascript" src="/static/interface/js/CurrentChart.js"></script>
     <script type="text/javascript" src="/static/interface/js/WeekChart.js"></script>
+    <script type="text/javascript" src="/static/interface/js/StatusPanel.js"></script>
     <script type="text/javascript" src="/static/interface/js/ProgramPanel.js"></script>
 </head>
 <body>
     <table id="main_table">
         <tr>
-            <td> <h1>Комплекс ВЭПП-4</h1>
+            <td width="295"> <h1>Комплекс ВЭПП-4</h1>
             </td>
-	    <td id="programPanel"><h3/>
+	    <td id="programPanel">
             </td>
 	    <td>
 	    </td>
@@ -54,20 +55,13 @@
             </td>
         </tr>
         <tr>
-            <td>
-                <h3 class='collapseTrigger'>ВЭПП-3</h3><pre><h3 id="v3status"></h3></pre>
-                <div id="v3tickData" class="curgraph_table">
-                </div>
-            </td>
-            <td colspan="3">
-                <div class="resizable">
-		    <div id="v3chart"></div>
-                </div>
+            <td colspan="4"> 
+                <div id="statusPanel" class="curgraph_table">
             </td>
         </tr>
         <tr>
             <td width="292" rowspan="2">
-                <h3 class='collapseTrigger'>ВЭПП-4</h3><pre><h3 id="v4status"></h3></pre>
+                <h3 class='collapseTrigger'>ВЭПП-4</h3>
                 <div id="v4tickData" class="curgraph_table">
                 </div>
             </td>
@@ -78,7 +72,7 @@
                         </td>
                     </tr>
                 </table>
-                <div class="resizable">
+                <div class="resizable fullscreen">
 		    <div id="v4chart"></div>
                 </div>
             </td>

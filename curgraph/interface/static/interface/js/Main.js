@@ -30,12 +30,14 @@ $(document).on("unset_loading_cursor",function(){
     document.body.style.cursor='default';
 });
 $(document).ready(function(){
+    initPicker();
     var model = CURGRAPH.CurrentModel(),
         controller = CURGRAPH.CurrentController(model,null);
     var program_panel = CURGRAPH.ProgramPanel($("#programPanel"),model);
     var datatable = CURGRAPH.TickGrid($("#tickData"),model,getPosition());
-    var datatable = CURGRAPH.StatusPanel($("#statusPanel"),model);
+    //var datatable = CURGRAPH.StatusPanel($("#statusPanel"),model);
     var chart = CURGRAPH.WeekChart($("#v3chart"),model);
+
     $.jqx.theme = 'darkblue';
 });
 

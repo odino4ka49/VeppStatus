@@ -133,7 +133,6 @@
 
 body{
     background-color: black;/*rgb(9, 8, 33);*/
-    color: white;
     font-family: Helvetica;
     font-size: 12pt;
     font-weight: bold;
@@ -148,9 +147,18 @@ h1 {
 }
 h3 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    margin: 0px;
+    margin: 0px 5px 0px 0px;
     letter-spacing: -1px;
     color: #fc7fff;
+    display: inline-block;
+    text-align: justify;
+}
+pre {
+    display: inline-block;
+}
+
+#datetimerange{
+    width: 390px;
 }
 
 #graph_frequency {

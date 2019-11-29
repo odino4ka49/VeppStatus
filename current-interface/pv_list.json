@@ -1,8 +1,7 @@
 [
   {
     "Name": "V3_status",
-    "Pv": "VEPP3:Status-RB",
-    "Datatype": "str"
+    "Pv": "VEPP3:Status-RB"
   },
   {
     "Name": "V3_status_int",
@@ -53,8 +52,7 @@
   },
   {
     "Name": "V4_status",
-    "Pv": "VEPP4:Status-RB",
-    "Datatype": "str"
+    "Pv": "VEPP4:Status-RB"
   },
   {
     "Name": "V4_status_int",
