@@ -15,12 +15,12 @@ socket.setsockopt(zmq.SUBSCRIBE, topicfilter)
 
 string = socket.recv()
 messagedata = string
-print messagedata"""
+print(messagedata)"""
 
 
 """c = zerorpc.Client()
 c.connect("tcp://127.0.0.1:4242")
-print c.testCountIntegral()
+print(c.testCountIntegral())
 """
 val = 12.002
-print round(val,2)
+print(round(val,2))

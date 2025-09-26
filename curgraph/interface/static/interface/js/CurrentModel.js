@@ -69,24 +69,45 @@ CURGRAPH.CurrentModel = function(){
         return result;
     };
 
-    function loadWeekData(){
-       // console.log("loadweek")
-            $(document).trigger("set_loading_cursor");
-            $.ajax({
-                type: "GET",
-                //data: {scheme_names: JSON.stringify(tree_scheme_names),filter_name: JSON.stringify(filter_name) },
-                url: CURGRAPH.serveradr()+"interface/getWeekArray",
-                error: function(xhr, ajaxOptions, thrownError) {
-                    $(document).trigger("unset_loading_cursor");
-                    $(document).trigger("error_message",thrownError);
-                },
-                success: function(data){
+    function loadWeekData(page, pageSize, startTime, endTime){
+        // console.log("loadweek")
+        $(document).trigger("set_loading_cursor");
+        
+        var params = {};
+        if (page) params.page = page;
+        if (pageSize) params.pageSize = pageSize;
+        if (startTime) params.start = startTime;
+        if (endTime) params.end = endTime;
+        
+        $.ajax({
+            type: "GET",
+            data: params,
+            url: CURGRAPH.serveradr()+"interface/getWeekArray",
+            error: function(xhr, ajaxOptions, thrownError) {
+                $(document).trigger("unset_loading_cursor");
+                $(document).trigger("error_message",thrownError);
+            },
+            success: function(data){
+                if (page && page > 1) {
+                    // Добавляем к существующим данным
+                    week_data = week_data.concat(data);
+                } else {
+                    // Заменяем данные
                     week_data = data;
-                    $(document).trigger("unset_loading_cursor");
-                    $(document).trigger("got_weekdata");
                 }
-            });
-        };
+                $(document).trigger("unset_loading_cursor");
+                $(document).trigger("got_weekdata", {page: page, hasMore: data.length === pageSize});
+            }
+        });
+    };
+    
+    function loadWeekDataRange(startTime, endTime, maxRecords) {
+        return loadWeekData(1, maxRecords || 1000, startTime, endTime);
+    };
+    
+    function loadWeekDataPage(page, pageSize) {
+        return loadWeekData(page, pageSize || 1000);
+    };
 
     function loadArrByVar(variable,start,end,freq){
             $(document).trigger("set_loading_cursor");
@@ -148,6 +169,9 @@ CURGRAPH.CurrentModel = function(){
 	getProgramData: getProgramData,
         loadArrByVar: loadArrByVar,
 	loadProgramData: loadProgramData,
-        getTickDataAsObj: getTickDataAsObj
+        getTickDataAsObj: getTickDataAsObj,
+        loadWeekData: loadWeekData,
+        loadWeekDataRange: loadWeekDataRange,
+        loadWeekDataPage: loadWeekDataPage
     };
 }

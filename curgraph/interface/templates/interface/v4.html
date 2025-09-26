@@ -5,7 +5,7 @@
     <title></title>
     <link rel="stylesheet" href="/static/jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="/static/jqwidgets/styles/jqx.darkblue.css" type="text/css" />
-    <link rel="stylesheet" href="/static/interface/css/curgraph.css"/>
+    <link rel="stylesheet" href="/static/interface/css/curgraph.css?v=2"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
     <script type="text/javascript" src="/static/interface/js/jquery-1.11.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -32,6 +32,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script type="text/javascript" src="/static/interface/js/Main.js"></script>
+    <script type="text/javascript" src="/static/interface/js/Clock.js?v=2"></script>
     <script type="text/javascript" src="/static/interface/js/CurrentModel.js"></script>
     <script type="text/javascript" src="/static/interface/js/CurrentController.js"></script>
     <script type="text/javascript" src="/static/interface/js/TickGrid.js"></script>
@@ -51,7 +52,10 @@
 	    <td>
 	    </td>
 	    <td align="right">
-		 <iframe src="http://free.timeanddate.com/clock/i6o3o7ac/n375/tlru33/fs48/fcfff/tct/pct/ahr/ftb/tt0/tw0/tm3/th1/tb2" frameborder="0" width="460" height="57" allowTransparency="true"></iframe>
+		 <div id="clock" class="clock-container">
+                    <div id="current-time" class="current-time"></div>
+                    <div id="current-date" class="current-date"></div>
+                </div>
             </td>
         </tr>
         <tr>

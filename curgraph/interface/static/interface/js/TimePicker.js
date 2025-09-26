@@ -2,6 +2,8 @@ var datetimerange = [];
 
 function initPicker(startDate) {
     if(!startDate) startDate = moment().subtract(1, 'hours');
+    
+    // Создаем daterangepicker, но отключаем его
     $('#datetimerange').daterangepicker({
         timePicker: true,
         timePicker24Hour: true,
@@ -11,15 +13,25 @@ function initPicker(startDate) {
 	maxDate: moment(),
         locale: {
             format: 'YYYY-MM-DD HH:mm:ss'
-        }
+        },
+        autoUpdateInput: true,
+        opens: 'left'
     });
+    
+    // Отключаем клик по полю даты/времени
+    $('#datetimerange').prop('readonly', true);
+    $('#datetimerange').css('cursor', 'default');
+    
+    // Удаляем обработчик клика
+    $('#datetimerange').off('click.daterangepicker');
+    $('#datetimerange').off('keydown.daterangepicker');
+    
+    // Устанавливаем начальные значения
     datetimerange[0] = startDate;
     datetimerange[1] = moment();
-    $('#datetimerange').on('apply.daterangepicker', function(ev, picker) {
-        datetimerange[0] = picker.startDate;
-        datetimerange[1] = picker.endDate;
-    	$(document).trigger("set_timeperiod",[false]);
-    });
+    
+    // Обновляем отображение
+    $('#datetimerange').val(startDate.format('YYYY-MM-DD HH:mm:ss') + ' - ' + moment().format('YYYY-MM-DD HH:mm:ss'));
   }
 
 function changeDateRange(range) {
@@ -45,7 +57,14 @@ function changeDateRange(range) {
 	    setFrequency(30);
 	    break;
     }
-    initPicker(start_date);
+    
+    // Обновляем значения без переинициализации picker
+    datetimerange[0] = start_date;
+    datetimerange[1] = moment();
+    
+    // Обновляем отображение
+    $('#datetimerange').val(start_date.format('YYYY-MM-DD HH:mm:ss') + ' - ' + moment().format('YYYY-MM-DD HH:mm:ss'));
+    
     $(document).trigger("set_timeperiod",[true]);
 }
 
@@ -54,7 +73,12 @@ function setFrequency(freq){
 }
 
 function timeTickingChanges(){
-    initPicker($('#datetimerange').data('daterangepicker').startDate);
+    // Обновляем только отображение без переинициализации
+    var startDate = datetimerange[0];
+    var endDate = moment();
+    
+    datetimerange[1] = endDate;
+    $('#datetimerange').val(startDate.format('YYYY-MM-DD HH:mm:ss') + ' - ' + endDate.format('YYYY-MM-DD HH:mm:ss'));
 }
 
 function getDateTime() {

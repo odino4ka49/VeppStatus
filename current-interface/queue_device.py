@@ -14,9 +14,9 @@ def main():
         backend.bind("tcp://*:5555")
 
         zmq.device(zmq.QUEUE, frontend, backend)
-    except Exception, e:
-        print e
-        print "bringing down zmq device"
+    except Exception as e:
+        print(e)
+        print("bringing down zmq device")
     finally:
         pass
         frontend.close()

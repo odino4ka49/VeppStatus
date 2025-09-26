@@ -133,6 +133,7 @@
 
 body{
     background-color: black;/*rgb(9, 8, 33);*/
+    color: white;
     font-family: Helvetica;
     font-size: 12pt;
     font-weight: bold;
@@ -159,8 +160,44 @@ pre {
 
 #datetimerange{
     width: 390px;
+    background-color: #f5f5f5 !important;
+    color: #666 !important;
+    cursor: default !important;
+    pointer-events: none;
+}
+
+#datetimerange:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 #graph_frequency {
     width: 40px;
+}
+
+/* Стили для собственных часов */
+.clock-container {
+    width: 460px;
+    height: 57px;
+    text-align: right;
+    background: transparent;
+    border: none;
+    padding: 8px;
+    font-family: 'Courier New', monospace;
+}
+
+.current-time, #current-time {
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    margin-bottom: 4px;
+    letter-spacing: 2px;
+}
+
+.current-date, #current-date {
+    font-size: 18px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    font-weight: bold;
 }

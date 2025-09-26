@@ -598,9 +598,14 @@ CURGRAPH.WeekChart = function(chart,model){
         addPlot(variable, values);
     });
 
-    $(document).on("got_weekdata",function(){
+    $(document).on("got_weekdata",function(event, paginationInfo){
         weekdata = model.getWeekData();
         createWeekChart();
+        
+        // Если есть информация о пагинации, можно загрузить следующую страницу
+        if (paginationInfo && paginationInfo.hasMore) {
+            console.log("📄 Загружена страница", paginationInfo.page, "есть еще данные");
+        }
     });
 
     $(document).on("got_tickdata",function(){
