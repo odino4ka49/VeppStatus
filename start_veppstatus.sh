@@ -28,7 +28,7 @@ fi
 start_django() {
     echo "🌐 Запуск Django сервера..."
     cd curgraph
-    python manage.py runserver &
+    python manage.py runserver 0.0.0.0:8000 &
     DJANGO_PID=$!
     echo "📋 Django PID: $DJANGO_PID"
     cd ..

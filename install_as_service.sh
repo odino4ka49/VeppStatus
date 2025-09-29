@@ -20,6 +20,35 @@ fi
 echo "👤 Текущий пользователь: $CURRENT_USER"
 echo "📁 Установка в: $INSTALL_DIR"
 
+# Проверяем наличие Python
+echo "🐍 Проверка Python..."
+if command -v python3 &> /dev/null; then
+    PYTHON_CMD="python3"
+    echo "✅ Найден python3"
+elif command -v python &> /dev/null; then
+    PYTHON_CMD="python"
+    echo "✅ Найден python"
+else
+    echo "❌ Python не найден. Установите Python3 и попробуйте снова."
+    echo "📦 Для Ubuntu/Debian: sudo apt install python3 python3-venv"
+    echo "📦 Для CentOS/RHEL: sudo yum install python3 python3-venv"
+    exit 1
+fi
+
+# Проверяем версию Python
+PYTHON_VERSION=$($PYTHON_CMD -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>/dev/null || echo "unknown")
+echo "📋 Версия Python: $PYTHON_VERSION"
+
+# Проверяем наличие модуля venv
+if ! $PYTHON_CMD -m venv --help &> /dev/null; then
+    echo "❌ Модуль venv недоступен."
+    echo "📦 Установите пакет python3-venv:"
+    echo "   sudo apt install python3-venv"
+    echo "   или для конкретной версии Python:"
+    echo "   sudo apt install python$PYTHON_VERSION-venv"
+    exit 1
+fi
+
 # Создаем пользователя для службы (если не существует)
 if ! id "veppstatus" &>/dev/null; then
     echo "👤 Создание пользователя veppstatus..."
@@ -50,11 +79,11 @@ chmod +x $INSTALL_DIR/current-interface/*.py
 
 # Создаем виртуальное окружение
 echo "🐍 Создание виртуального окружения..."
-python3 -m venv $VENV_DIR
+$PYTHON_CMD -m venv $VENV_DIR
 sudo -u veppstatus $VENV_DIR/bin/pip install --upgrade pip
 sudo -u veppstatus $VENV_DIR/bin/pip install -r $INSTALL_DIR/requirements.txt
 
-# Выполняем мигра仕 Django
+# Выполняем миграции Django
 echo "🗄️ Выполнение миграций Django..."
 cd $INSTALL_DIR/curgraph
 sudo -u veppstatus $VENV_DIR/bin/python manage.py migrate --settings=curgraph.settings
