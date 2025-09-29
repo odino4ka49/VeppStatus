@@ -1,0 +1,35 @@
+[Unit]
+Description=VeppStatus Django Server
+After=network.target
+Wants=veppstatus-data.service
+
+[Service]
+Type=simple
+User=veppstatus
+Group=veppstatus
+WorkingDirectory=/opt/veppstatus/curgraph
+Environment=PATH=/opt/veppstatus/venv/bin
+ExecStart=/opt/veppstatus/venv/bin/python manage.py runserver 0.0.0.0:8000
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=veppstatus-django
+
+# Безопасность
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadOnlyPaths=/opt/veppstatus
+ReadWritePaths=/opt/veppstatus/current-interface
+ProtectHome=true
+
+# Ограничения ресурсов
+MemoryLimit=512M
+MemoryAccounting=true
+CPUAccounting=true
+TasksAccounting=true
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target
