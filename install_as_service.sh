@@ -43,8 +43,6 @@ echo "📋 Копирование файлов проекта..."
 cp -r $SCRIPT_DIR/curgraph $INSTALL_DIR/
 cp -r $SCRIPT_DIR/current-interface $INSTALL_DIR/
 cp $SCRIPT_DIR/requirements.txt $INSTALL_DIR/
-cp $SCRIPT_DIR/pv_list.json $INSTALL_DIR/
-cp $SCRIPT_DIR/status_list.json $INSTALL_DIR/
 
 # Устанавливаем права доступа
 chown -R veppstatus:veppstatus $INSTALL_DIR

@@ -8,8 +8,11 @@ echo "🚀 Трансфер VeppStatus на удаленный сервер..."
 # Проверяем аргументы
 if [ $# -ne 2 ]; then
     echo "❌ Неверное количество аргументов"
-    echo "📝 Использование: $0 USER@SERVER_IP LOCAL_PATH_TO_PROJECT"
-    echo "📝 Пример: $0 root@192.168.1.100 /home/user/VeppStatus"
+    echo "📝 Использование: $0 USER@SERVER_NAME_OR_IP LOCAL_PATH_TO_PROJECT"
+    echo "📝 Примеры:"
+    echo "  $0 user@web-dev /home/user/VeppStatus"
+    echo "  $0 user@192.168.144.71 /home/user/VeppStatus"
+    echo "  $0 user@vepp4-server /home/user/VeppStatus"
     exit 1
 fi
 
