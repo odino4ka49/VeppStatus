@@ -229,3 +229,44 @@ cp current-interface/week_data.backup current-interface/week_data
 # Восстановление БД
 cp curgraph/db.sqlite3.backup curgraph/db.sqlite3
 ```
+
+## Systemd сервис (автозапуск)
+
+### Установка как systemd сервиса
+```bash
+# Установка сервиса (автоматически определяет пользователя и пути)
+sudo ./install_service.sh
+
+# Запуск сервиса
+sudo systemctl start veppstatus
+
+# Проверка статуса
+sudo systemctl status veppstatus
+```
+
+### Управление сервисом
+```bash
+# Основные команды
+sudo systemctl start veppstatus    # Запустить
+sudo systemctl stop veppstatus     # Остановить
+sudo systemctl restart veppstatus  # Перезапустить
+
+# Автозапуск при перезагрузке
+sudo ./manage_autostart.sh enable   # Включить
+sudo ./manage_autostart.sh disable  # Отключить
+sudo ./manage_autostart.sh check    # Проверить
+
+# Просмотр логов
+sudo journalctl -u veppstatus -f
+```
+
+### Удаление сервиса
+```bash
+sudo ./uninstall_service.sh
+```
+
+**Преимущества systemd сервиса:**
+- ✅ Автозапуск при перезагрузке системы
+- ✅ Автоматический перезапуск при сбоях
+- ✅ Централизованные логи через systemd journal
+- ✅ Универсальность - работает на любой машине

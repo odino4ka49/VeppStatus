@@ -104,3 +104,33 @@ STATIC_URL = '/static/'
 # Подавляем предупреждения о непримененных миграциях
 # так как Django используется только как веб-сервер, а не для работы с БД
 SILENCED_SYSTEM_CHECKS = ['admin.E001', 'auth.E001']
+
+# Настройки логирования для отключения логов getTickData
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'skip_tickdata_logs': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': lambda record: '/interface/getTickData' not in record.getMessage(),
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'filters': ['skip_tickdata_logs'],
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'django.server': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}

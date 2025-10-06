@@ -1,0 +1,39 @@
+[Unit]
+Description=VeppStatus - Django веб-сервер и сервер сбора данных
+Documentation=https://github.com/odino4ka49/VeppStatus
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=oidinka
+Group=oidinka
+WorkingDirectory=/home/oidinka/work/VeppStatus
+ExecStart=/home/oidinka/work/VeppStatus/veppstatus_service.sh
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=mixed
+KillSignal=SIGINT
+TimeoutStopSec=30
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=veppstatus
+
+# Переменные окружения
+Environment=PATH=/home/oidinka/work/VeppStatus/veppstatus_env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Environment=VIRTUAL_ENV=/home/oidinka/work/VeppStatus/veppstatus_env
+
+# Ограничения ресурсов
+LimitNOFILE=65536
+LimitNPROC=4096
+
+# Безопасность
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/home/oidinka/work/VeppStatus
+
+[Install]
+WantedBy=multi-user.target
