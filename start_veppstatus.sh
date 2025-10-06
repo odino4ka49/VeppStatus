@@ -28,7 +28,7 @@ fi
 start_django() {
     echo "🌐 Запуск Django сервера..."
     cd curgraph
-    python manage.py runserver 0.0.0.0:8000 &
+    python manage.py runserver 0.0.0.0:8001 &
     DJANGO_PID=$!
     echo "📋 Django PID: $DJANGO_PID"
     cd ..
@@ -81,7 +81,7 @@ start_data_server
 echo ""
 echo "🎉 VeppStatus запущен!"
 echo ""
-echo "🌐 Веб-интерфейс: http://127.0.0.1:8000/interface/"
+echo "🌐 Веб-интерфейс: http://0.0.0.1:8001/interface/"
 echo "📊 Сервер сбора данных: tcp://127.0.0.1:4242"
 echo ""
 echo "⏹️  Для остановки нажмите Ctrl+C"
